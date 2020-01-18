@@ -7,7 +7,7 @@
 
 # Freebuilder
 **.factorypath
-**/generated
+/generated
 
 # Gradle
 **/build

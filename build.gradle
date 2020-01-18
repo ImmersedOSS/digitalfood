@@ -1,3 +1,14 @@
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "gradle.plugin.org.inferred:gradle-processors:3.2.0"
+  }
+}
+
 repositories {
     jcenter()
     maven { url 'https://repo.gradle.org/gradle/libs-releases' }
@@ -5,8 +16,14 @@ repositories {
 
 apply plugin: "java-library"
 apply plugin: "eclipse"
+apply plugin: "org.inferred.processors"
 
 dependencies {
+	processor 'org.inferred:freebuilder:2.5.0'
+	
+	implementation("com.google.guava:guava:28.2-jre")
+	implementation 'com.squareup:javapoet:1.11.1'
+
 	testImplementation('org.junit.jupiter:junit-jupiter:5.5.2')
 	testImplementation 'org.assertj:assertj-core:3.11.1'
 	testImplementation 'org.mockito:mockito-core:2.23.4'
