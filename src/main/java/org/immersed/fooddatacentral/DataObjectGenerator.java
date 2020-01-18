@@ -16,7 +16,7 @@ import org.immersed.Constants;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.TypeSpec;
 
-public class Reader
+public class DataObjectGenerator
 {
     public static void main(String[] args) throws IOException
     {
