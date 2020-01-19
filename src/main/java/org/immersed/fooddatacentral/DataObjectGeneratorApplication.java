@@ -6,7 +6,7 @@ import java.util.zip.*;
 
 import com.univocity.parsers.csv.*;
 
-public class DataObjectGenerator
+public class DataObjectGeneratorApplication
 {
     public static void main(String[] args) throws IOException
     {
