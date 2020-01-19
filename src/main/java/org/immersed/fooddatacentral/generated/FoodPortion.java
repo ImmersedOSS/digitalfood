@@ -25,7 +25,7 @@ interface FoodPortion {
 
   int dataPoints();
 
-  int footnote();
+  String footnote();
 
   int minYearAcquired();
 }

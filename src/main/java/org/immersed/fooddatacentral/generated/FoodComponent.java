@@ -15,7 +15,7 @@ interface FoodComponent {
 
   double pctWeight();
 
-  String isRefuse();
+  boolean isRefuse();
 
   double gramWeight();
 

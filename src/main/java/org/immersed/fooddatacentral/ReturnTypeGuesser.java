@@ -3,42 +3,64 @@ package org.immersed.fooddatacentral;
 import java.time.*;
 import java.util.*;
 import java.util.Map.*;
-import java.util.function.*;
+import java.util.function.Function;
+import java.util.function.Predicate;
+
+import com.google.common.base.*;
 
 public class ReturnTypeGuesser
 {
-    private static final Map<Class<?>, Predicate<String>> CHECKERS = new LinkedHashMap<>();
-
-    private static Predicate<String> safe(Function<String, ?> function)
+    private static class Checker implements Predicate<String>
     {
-        return columnValue ->
+        private final Function<String, ?> checker;
+        private final Class<?> type;
+
+        public Checker(Class<?> type, Function<String, ?> function)
+        {
+            this.checker = function;
+            this.type = type;
+        }
+
+        @Override
+        public boolean test(String columnValue)
         {
             try
             {
-                function.apply(columnValue);
+                checker.apply(columnValue);
                 return true;
             }
             catch (RuntimeException e)
             {
                 return false;
             }
-        };
+        }
     }
+
+    private static final List<Checker> CHECKERS = new ArrayList<>();
 
     static
     {
-        CHECKERS.put(int.class, safe(Integer::parseInt));
-        CHECKERS.put(long.class, safe(Long::parseLong));
-        CHECKERS.put(double.class, safe(Double::parseDouble));
-        CHECKERS.put(LocalDate.class, safe(LocalDate::parse));
-        CHECKERS.put(String.class, s -> true);
+        CHECKERS.add(new Checker(String.class, s ->
+        {
+            throw new IllegalStateException();
+        }));
+        CHECKERS.add(new Checker(boolean.class, s ->
+        {
+            Preconditions.checkState(s.equalsIgnoreCase("Y") || s.equalsIgnoreCase("N"));
+            return true;
+        }));
+        CHECKERS.add(new Checker(int.class, Integer::parseInt));
+        CHECKERS.add(new Checker(long.class, Long::parseLong));
+        CHECKERS.add(new Checker(double.class, Double::parseDouble));
+        CHECKERS.add(new Checker(LocalDate.class, LocalDate::parse));
+        CHECKERS.add(new Checker(String.class, s -> true));
     }
 
-    private Map<Class<?>, Boolean> valid = new LinkedHashMap<Class<?>, Boolean>();
+    private Map<Checker, Boolean> valid = new LinkedHashMap<>();
 
     public ReturnTypeGuesser()
     {
-        CHECKERS.keySet()
+        CHECKERS.stream()
                 .forEach(k -> valid.put(k, true));
     }
 
@@ -49,10 +71,9 @@ public class ReturnTypeGuesser
             return;
         }
 
-        for (Entry<Class<?>, Boolean> entry : valid.entrySet())
+        for (Entry<Checker, Boolean> entry : valid.entrySet())
         {
-            Class<?> key = entry.getKey();
-            Predicate<String> checker = CHECKERS.get(key);
+            Checker checker = entry.getKey();
             boolean currentState = entry.getValue();
             entry.setValue(currentState && checker.test(value));
         }
@@ -60,11 +81,11 @@ public class ReturnTypeGuesser
 
     public Class<?> bestMatch()
     {
-        for (Entry<Class<?>, Boolean> entry : valid.entrySet())
+        for (Entry<Checker, Boolean> entry : valid.entrySet())
         {
             if (Boolean.TRUE.equals(entry.getValue()))
             {
-                return entry.getKey();
+                return entry.getKey().type;
             }
         }
 
