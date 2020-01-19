@@ -1,6 +1,7 @@
 package org.immersed.fooddatacentral.generated;
 
 import java.lang.String;
+import java.util.Optional;
 import org.inferred.freebuilder.FreeBuilder;
 
 /**
@@ -25,7 +26,7 @@ interface FoodPortion {
 
   int dataPoints();
 
-  String footnote();
+  Optional<String> footnote();
 
   int minYearAcquired();
 }
