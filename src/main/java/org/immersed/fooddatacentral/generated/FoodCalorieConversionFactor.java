@@ -20,6 +20,10 @@ interface FoodCalorieConversionFactor {
   class Builder extends FoodCalorieConversionFactor_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.foodNutrientConversionFactorId(Integer.parseInt(row[0]));
+      super.proteinValue(Double.parseDouble(row[1]));
+      super.fatValue(Double.parseDouble(row[2]));
+      super.carbohydrateValue(Double.parseDouble(row[3]));
       return this;
     }
   }

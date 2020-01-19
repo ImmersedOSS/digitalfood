@@ -20,6 +20,10 @@ interface RetentionFactor {
   class Builder extends RetentionFactor_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.id(Integer.parseInt(row[0]));
+      super.code(Integer.parseInt(row[1]));
+      super.foodGroupId(Integer.parseInt(row[2]));
+      super.description(row[3]);
       return this;
     }
   }

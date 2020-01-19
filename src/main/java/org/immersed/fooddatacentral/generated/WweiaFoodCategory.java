@@ -16,6 +16,8 @@ interface WweiaFoodCategory {
   class Builder extends WweiaFoodCategory_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.wweiaFoodCategoryCode(Integer.parseInt(row[0]));
+      super.wweiaFoodCategoryDescription(row[1]);
       return this;
     }
   }

@@ -35,6 +35,17 @@ interface BrandedFood {
   class Builder extends BrandedFood_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.fdcId(Integer.parseInt(row[0]));
+      super.brandOwner(row[1]);
+      super.gtinUpc(row[2]);
+      super.ingredients(row[3]);
+      super.servingSize(Double.parseDouble(row[4]));
+      super.servingSizeUnit(row[5]);
+      super.householdServingFulltext(row[6]);
+      super.brandedFoodCategory(row[7]);
+      super.dataSource(row[8]);
+      super.modifiedDate(LocalDate.parse(row[9]));
+      super.availableDate(LocalDate.parse(row[10]));
       return this;
     }
   }

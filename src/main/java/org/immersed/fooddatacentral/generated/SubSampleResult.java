@@ -20,6 +20,10 @@ interface SubSampleResult {
   class Builder extends SubSampleResult_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.foodNutrientId(Integer.parseInt(row[0]));
+      super.adjustedAmount(Double.parseDouble(row[1]));
+      super.labMethodId(Integer.parseInt(row[2]));
+      super.nutrientName(row[3]);
       return this;
     }
   }

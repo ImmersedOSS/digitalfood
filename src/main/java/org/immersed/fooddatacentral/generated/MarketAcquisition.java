@@ -39,6 +39,19 @@ interface MarketAcquisition {
   class Builder extends MarketAcquisition_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.fdcId(Integer.parseInt(row[0]));
+      super.brandDescription(row[1]);
+      super.expirationDate(LocalDate.parse(row[2]));
+      super.labelWeight(Integer.parseInt(row[3]));
+      super.location(row[4]);
+      super.acquisitionDate(LocalDate.parse(row[5]));
+      super.salesType(row[6]);
+      super.sampleLotNbr(row[7]);
+      super.sellByDate(LocalDate.parse(row[8]));
+      super.storeCity(row[9]);
+      super.storeName(row[10]);
+      super.storeState(row[11]);
+      super.upcCode(row[12]);
       return this;
     }
   }

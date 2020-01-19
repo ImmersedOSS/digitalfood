@@ -23,6 +23,11 @@ interface SurveyFnddsFood {
   class Builder extends SurveyFnddsFood_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.fdcId(Integer.parseInt(row[0]));
+      super.foodCode(Integer.parseInt(row[1]));
+      super.wweiaCategoryCode(Integer.parseInt(row[2]));
+      super.startDate(LocalDate.parse(row[3]));
+      super.endDate(LocalDate.parse(row[4]));
       return this;
     }
   }

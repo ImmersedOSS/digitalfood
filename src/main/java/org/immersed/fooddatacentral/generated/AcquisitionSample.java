@@ -16,6 +16,8 @@ interface AcquisitionSample {
   class Builder extends AcquisitionSample_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.fdcIdOfSampleFood(Integer.parseInt(row[0]));
+      super.fdcIdOfAcquisitionFood(Integer.parseInt(row[1]));
       return this;
     }
   }

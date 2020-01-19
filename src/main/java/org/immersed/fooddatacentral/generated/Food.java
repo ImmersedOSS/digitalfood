@@ -23,6 +23,11 @@ interface Food {
   class Builder extends Food_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.fdcId(Integer.parseInt(row[0]));
+      super.dataType(row[1]);
+      super.description(row[2]);
+      super.foodCategoryId(Integer.parseInt(row[3]));
+      super.publicationDate(LocalDate.parse(row[4]));
       return this;
     }
   }

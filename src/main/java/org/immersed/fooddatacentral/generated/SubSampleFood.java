@@ -16,6 +16,8 @@ interface SubSampleFood {
   class Builder extends SubSampleFood_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.fdcId(Integer.parseInt(row[0]));
+      super.fdcIdOfSampleFood(Integer.parseInt(row[1]));
       return this;
     }
   }

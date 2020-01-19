@@ -28,6 +28,14 @@ interface FoodComponent {
   class Builder extends FoodComponent_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.id(Integer.parseInt(row[0]));
+      super.fdcId(Integer.parseInt(row[1]));
+      super.name(row[2]);
+      super.pctWeight(Double.parseDouble(row[3]));
+      super.isRefuse("Y".equals(row[4]));
+      super.gramWeight(Double.parseDouble(row[5]));
+      super.dataPoints(Integer.parseInt(row[6]));
+      super.minYearAcquired(Integer.parseInt(row[7]));
       return this;
     }
   }

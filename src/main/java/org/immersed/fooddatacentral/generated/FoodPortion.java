@@ -35,6 +35,17 @@ interface FoodPortion {
   class Builder extends FoodPortion_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.id(Integer.parseInt(row[0]));
+      super.fdcId(Integer.parseInt(row[1]));
+      super.seqNum(Integer.parseInt(row[2]));
+      super.amount(Double.parseDouble(row[3]));
+      super.measureUnitId(Integer.parseInt(row[4]));
+      super.portionDescription(row[5]);
+      super.modifier(row[6]);
+      super.gramWeight(Double.parseDouble(row[7]));
+      super.dataPoints(Integer.parseInt(row[8]));
+      super.footnote(Optional.ofNullable(row[9]));
+      super.minYearAcquired(Integer.parseInt(row[10]));
       return this;
     }
   }

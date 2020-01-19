@@ -24,6 +24,12 @@ interface FoodAttribute {
   class Builder extends FoodAttribute_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.id(Integer.parseInt(row[0]));
+      super.fdcId(Integer.parseInt(row[1]));
+      super.seqNum(Integer.parseInt(row[2]));
+      super.foodAttributeTypeId(Integer.parseInt(row[3]));
+      super.name(row[4]);
+      super.value(row[5]);
       return this;
     }
   }

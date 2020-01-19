@@ -67,7 +67,7 @@ public class ReturnTypeGuesser
         CHECKERS.add(new Checker(long.class, Long::parseLong));
         CHECKERS.add(new Checker(double.class, Double::parseDouble));
         CHECKERS.add(new Checker(LocalDate.class, LocalDate::parse));
-        CHECKERS.add(new Checker(String.class, s -> true));
+        CHECKERS.add(new Checker(String.class, s -> s));
     }
 
     private Map<Checker, Boolean> valid = new LinkedHashMap<>();
@@ -100,8 +100,8 @@ public class ReturnTypeGuesser
         {
             if (Boolean.TRUE.equals(entry.getValue()))
             {
-                return entry.getKey()
-                            .getType();
+                Checker checker = entry.getKey();
+                return checker.getType();
             }
         }
 

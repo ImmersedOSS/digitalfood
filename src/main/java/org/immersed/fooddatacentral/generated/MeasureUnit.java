@@ -16,6 +16,8 @@ interface MeasureUnit {
   class Builder extends MeasureUnit_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.id(Integer.parseInt(row[0]));
+      super.name(row[1]);
       return this;
     }
   }

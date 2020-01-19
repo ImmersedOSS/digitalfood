@@ -3,6 +3,7 @@ package org.immersed.fooddatacentral;
 import static com.google.common.base.CaseFormat.*;
 
 import java.io.*;
+import java.time.*;
 import java.util.*;
 
 import javax.lang.model.element.*;
@@ -17,6 +18,17 @@ import com.univocity.parsers.common.processor.*;
 
 public class JavaPoetRowProcessor implements RowProcessor
 {
+    private static final Map<TypeName, String> TYPES = new HashMap<>();
+
+    static
+    {
+        TYPES.put(TypeName.BOOLEAN, "\"Y\".equals");
+        TYPES.put(TypeName.INT, "Integer.parseInt");
+        TYPES.put(TypeName.LONG, "Long.parseLong");
+        TYPES.put(TypeName.DOUBLE, "Double.parseDouble");
+        TYPES.put(TypeName.get(LocalDate.class), "LocalDate.parse");
+    }
+
     private TypeSpec.Builder dataObjectType;
     private TypeSpec.Builder builderType;
     private MethodSpec.Builder builderCsvMethod;
@@ -85,11 +97,40 @@ public class JavaPoetRowProcessor implements RowProcessor
         {
             String methodName = LOWER_UNDERSCORE.to(LOWER_CAMEL, columns[i]);
 
+            TypeName type = this.guessers[i].bestMatch();
             MethodSpec method = MethodSpec.methodBuilder(methodName)
                                           .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
-                                          .returns(this.guessers[i].bestMatch())
+                                          .returns(type)
                                           .build();
             this.dataObjectType.addMethod(method);
+
+            TypeName workingType = type;
+            CodeBlock.Builder block = CodeBlock.builder();
+            block.add("super.$L(", methodName);
+            int calls = 1;
+
+            if (workingType instanceof ParameterizedTypeName)
+            {
+                workingType = ((ParameterizedTypeName) type).typeArguments.get(0);
+
+                block.add("Optional.ofNullable(");
+                calls++;
+            }
+
+            if (TYPES.containsKey(workingType))
+            {
+                block.add("$L(", TYPES.get(workingType));
+                calls++;
+            }
+
+            block.add("row[$L]", i);
+
+            for (int x = 0; x < calls; x++)
+            {
+                block.add(")");
+            }
+            block.add(";\n");
+            this.builderCsvMethod.addCode(block.build());
         }
 
         this.builderCsvMethod.addStatement("return this");

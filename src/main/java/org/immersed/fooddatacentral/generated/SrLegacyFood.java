@@ -16,6 +16,8 @@ interface SrLegacyFood {
   class Builder extends SrLegacyFood_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.fdcId(Integer.parseInt(row[0]));
+      super.ndbNumber(Integer.parseInt(row[1]));
       return this;
     }
   }

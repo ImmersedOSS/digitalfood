@@ -16,6 +16,8 @@ interface FoodNutrientConversionFactor {
   class Builder extends FoodNutrientConversionFactor_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.id(Integer.parseInt(row[0]));
+      super.fdcId(Integer.parseInt(row[1]));
       return this;
     }
   }

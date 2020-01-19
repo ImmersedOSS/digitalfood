@@ -23,6 +23,11 @@ interface AgriculturalAcquisition {
   class Builder extends AgriculturalAcquisition_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.fdcId(Integer.parseInt(row[0]));
+      super.acquisitionDate(LocalDate.parse(row[1]));
+      super.marketClass(row[2]);
+      super.treatment(row[3]);
+      super.state(row[4]);
       return this;
     }
   }

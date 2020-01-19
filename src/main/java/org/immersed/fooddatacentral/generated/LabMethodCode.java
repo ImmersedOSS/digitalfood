@@ -18,6 +18,9 @@ interface LabMethodCode {
   class Builder extends LabMethodCode_Builder implements FoodDataBuilder<Builder> {
     @Override
     public Builder fromCsv(String[] row) {
+      super.id(Integer.parseInt(row[0]));
+      super.labMethodId(Integer.parseInt(row[1]));
+      super.code(row[2]);
       return this;
     }
   }
