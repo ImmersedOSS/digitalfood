@@ -21,8 +21,11 @@ apply plugin: "org.inferred.processors"
 dependencies {
 	processor 'org.inferred:freebuilder:2.5.0'
 	
+	api 'tech.units:indriya:2.0.2'
+	
 	implementation("com.google.guava:guava:28.2-jre")
 	implementation 'com.squareup:javapoet:1.11.1'
+	implementation 'com.univocity:univocity-parsers:2.8.4'
 
 	testImplementation('org.junit.jupiter:junit-jupiter:5.5.2')
 	testImplementation 'org.assertj:assertj-core:3.11.1'
