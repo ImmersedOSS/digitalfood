@@ -2,7 +2,6 @@ package org.immersed.fooddatacentral.generated;
 
 import java.lang.Override;
 import java.lang.String;
-import java.util.OptionalInt;
 import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
@@ -10,7 +9,7 @@ import org.inferred.freebuilder.FreeBuilder;
  * Auto-generated from wweia_food_category.csv. */
 @FreeBuilder
 interface WweiaFoodCategory {
-  OptionalInt wweiaFoodCategoryCode();
+  int wweiaFoodCategoryCode();
 
   String wweiaFoodCategoryDescription();
 

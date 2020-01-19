@@ -2,7 +2,6 @@ package org.immersed.fooddatacentral.generated;
 
 import java.lang.Override;
 import java.lang.String;
-import java.util.OptionalInt;
 import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
@@ -10,7 +9,7 @@ import org.inferred.freebuilder.FreeBuilder;
  * Auto-generated from lab_method.csv. */
 @FreeBuilder
 interface LabMethod {
-  OptionalInt id();
+  int id();
 
   String description();
 

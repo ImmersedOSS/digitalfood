@@ -2,8 +2,6 @@ package org.immersed.fooddatacentral.generated;
 
 import java.lang.Override;
 import java.lang.String;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
 import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
@@ -11,13 +9,13 @@ import org.inferred.freebuilder.FreeBuilder;
  * Auto-generated from food_calorie_conversion_factor.csv. */
 @FreeBuilder
 interface FoodCalorieConversionFactor {
-  OptionalInt foodNutrientConversionFactorId();
+  int foodNutrientConversionFactorId();
 
-  OptionalDouble proteinValue();
+  double proteinValue();
 
-  OptionalDouble fatValue();
+  double fatValue();
 
-  OptionalDouble carbohydrateValue();
+  double carbohydrateValue();
 
   class Builder extends FoodCalorieConversionFactor_Builder implements FoodDataBuilder<Builder> {
     @Override

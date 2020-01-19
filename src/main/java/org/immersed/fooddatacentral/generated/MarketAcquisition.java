@@ -3,7 +3,6 @@ package org.immersed.fooddatacentral.generated;
 import java.lang.Override;
 import java.lang.String;
 import java.time.LocalDate;
-import java.util.OptionalInt;
 import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
@@ -11,13 +10,13 @@ import org.inferred.freebuilder.FreeBuilder;
  * Auto-generated from market_acquisition.csv. */
 @FreeBuilder
 interface MarketAcquisition {
-  OptionalInt fdcId();
+  int fdcId();
 
   String brandDescription();
 
   LocalDate expirationDate();
 
-  OptionalInt labelWeight();
+  int labelWeight();
 
   String location();
 

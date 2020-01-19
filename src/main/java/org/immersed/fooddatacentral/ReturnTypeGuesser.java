@@ -63,9 +63,9 @@ public class ReturnTypeGuesser
             return true;
         }));
 
-        CHECKERS.add(new Checker(OptionalInt.class, Integer::parseInt));
-        CHECKERS.add(new Checker(OptionalLong.class, Long::parseLong));
-        CHECKERS.add(new Checker(OptionalDouble.class, Double::parseDouble));
+        CHECKERS.add(new Checker(int.class, Integer::parseInt));
+        CHECKERS.add(new Checker(long.class, Long::parseLong));
+        CHECKERS.add(new Checker(double.class, Double::parseDouble));
         CHECKERS.add(new Checker(LocalDate.class, LocalDate::parse));
         CHECKERS.add(new Checker(String.class, s -> true));
     }

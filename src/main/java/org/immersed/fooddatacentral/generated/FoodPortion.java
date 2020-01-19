@@ -3,8 +3,6 @@ package org.immersed.fooddatacentral.generated;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
 import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
@@ -12,27 +10,27 @@ import org.inferred.freebuilder.FreeBuilder;
  * Auto-generated from food_portion.csv. */
 @FreeBuilder
 interface FoodPortion {
-  OptionalInt id();
+  int id();
 
-  OptionalInt fdcId();
+  int fdcId();
 
-  OptionalInt seqNum();
+  int seqNum();
 
-  OptionalDouble amount();
+  double amount();
 
-  OptionalInt measureUnitId();
+  int measureUnitId();
 
   String portionDescription();
 
   String modifier();
 
-  OptionalDouble gramWeight();
+  double gramWeight();
 
-  OptionalInt dataPoints();
+  int dataPoints();
 
   Optional<String> footnote();
 
-  OptionalInt minYearAcquired();
+  int minYearAcquired();
 
   class Builder extends FoodPortion_Builder implements FoodDataBuilder<Builder> {
     @Override

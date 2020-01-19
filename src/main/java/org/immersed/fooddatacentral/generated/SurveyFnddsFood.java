@@ -3,7 +3,6 @@ package org.immersed.fooddatacentral.generated;
 import java.lang.Override;
 import java.lang.String;
 import java.time.LocalDate;
-import java.util.OptionalInt;
 import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
@@ -11,11 +10,11 @@ import org.inferred.freebuilder.FreeBuilder;
  * Auto-generated from survey_fndds_food.csv. */
 @FreeBuilder
 interface SurveyFnddsFood {
-  OptionalInt fdcId();
+  int fdcId();
 
-  OptionalInt foodCode();
+  int foodCode();
 
-  OptionalInt wweiaCategoryCode();
+  int wweiaCategoryCode();
 
   LocalDate startDate();
 

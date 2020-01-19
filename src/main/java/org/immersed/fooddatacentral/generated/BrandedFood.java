@@ -3,8 +3,6 @@ package org.immersed.fooddatacentral.generated;
 import java.lang.Override;
 import java.lang.String;
 import java.time.LocalDate;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
 import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
@@ -12,7 +10,7 @@ import org.inferred.freebuilder.FreeBuilder;
  * Auto-generated from branded_food.csv. */
 @FreeBuilder
 interface BrandedFood {
-  OptionalInt fdcId();
+  int fdcId();
 
   String brandOwner();
 
@@ -20,7 +18,7 @@ interface BrandedFood {
 
   String ingredients();
 
-  OptionalDouble servingSize();
+  double servingSize();
 
   String servingSizeUnit();
 
