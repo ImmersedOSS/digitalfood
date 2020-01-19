@@ -10,4 +10,7 @@ interface WweiaFoodCategory {
   int wweiaFoodCategoryCode();
 
   String wweiaFoodCategoryDescription();
+
+  class Builder extends WweiaFoodCategory_Builder {
+  }
 }

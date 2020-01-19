@@ -14,4 +14,7 @@ interface RetentionFactor {
   int foodGroupId();
 
   String description();
+
+  class Builder extends RetentionFactor_Builder {
+  }
 }

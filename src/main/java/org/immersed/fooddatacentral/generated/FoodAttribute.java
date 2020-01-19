@@ -18,4 +18,7 @@ interface FoodAttribute {
   String name();
 
   String value();
+
+  class Builder extends FoodAttribute_Builder {
+  }
 }

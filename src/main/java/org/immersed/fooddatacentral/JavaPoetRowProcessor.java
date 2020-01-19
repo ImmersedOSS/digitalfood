@@ -23,7 +23,17 @@ public class JavaPoetRowProcessor implements RowProcessor
     public JavaPoetRowProcessor(String fileName)
     {
         String name = fileName.replace(".csv", "");
-        this.builder = TypeSpec.interfaceBuilder(LOWER_UNDERSCORE.to(UPPER_CAMEL, name))
+
+        String typeName = LOWER_UNDERSCORE.to(UPPER_CAMEL, name);
+
+        TypeSpec innerBuilder = TypeSpec.classBuilder("Builder")
+                                        .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                                        .superclass(ClassName.get("org.immersed.fooddatacentral.generated",
+                                                typeName + "_Builder"))
+                                        .build();
+
+        this.builder = TypeSpec.interfaceBuilder(typeName)
+                               .addType(innerBuilder)
                                .addAnnotation(FreeBuilder.class)
                                .addJavadoc("Auto-generated from $L.", fileName);
     }

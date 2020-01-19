@@ -17,4 +17,7 @@ interface Food {
   int foodCategoryId();
 
   LocalDate publicationDate();
+
+  class Builder extends Food_Builder {
+  }
 }

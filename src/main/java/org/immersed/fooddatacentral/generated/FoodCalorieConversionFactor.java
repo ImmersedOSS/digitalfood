@@ -13,4 +13,7 @@ interface FoodCalorieConversionFactor {
   double fatValue();
 
   double carbohydrateValue();
+
+  class Builder extends FoodCalorieConversionFactor_Builder {
+  }
 }

@@ -12,4 +12,7 @@ interface FoodCategory {
   int code();
 
   String description();
+
+  class Builder extends FoodCategory_Builder {
+  }
 }

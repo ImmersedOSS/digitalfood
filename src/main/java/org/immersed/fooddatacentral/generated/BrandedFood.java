@@ -29,4 +29,7 @@ interface BrandedFood {
   LocalDate modifiedDate();
 
   LocalDate availableDate();
+
+  class Builder extends BrandedFood_Builder {
+  }
 }

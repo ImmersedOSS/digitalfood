@@ -9,4 +9,7 @@ interface FoodNutrientConversionFactor {
   int id();
 
   int fdcId();
+
+  class Builder extends FoodNutrientConversionFactor_Builder {
+  }
 }

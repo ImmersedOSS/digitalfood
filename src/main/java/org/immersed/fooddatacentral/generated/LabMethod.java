@@ -12,4 +12,7 @@ interface LabMethod {
   String description();
 
   String technique();
+
+  class Builder extends LabMethod_Builder {
+  }
 }

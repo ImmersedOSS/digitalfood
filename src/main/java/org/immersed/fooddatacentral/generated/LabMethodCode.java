@@ -12,4 +12,7 @@ interface LabMethodCode {
   int labMethodId();
 
   String code();
+
+  class Builder extends LabMethodCode_Builder {
+  }
 }

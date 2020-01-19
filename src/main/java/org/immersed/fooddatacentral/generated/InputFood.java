@@ -32,4 +32,7 @@ interface InputFood {
   int retentionCode();
 
   int surveyFlag();
+
+  class Builder extends InputFood_Builder {
+  }
 }

@@ -9,4 +9,7 @@ interface SubSampleFood {
   int fdcId();
 
   int fdcIdOfSampleFood();
+
+  class Builder extends SubSampleFood_Builder {
+  }
 }

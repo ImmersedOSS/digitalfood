@@ -11,4 +11,7 @@ interface LabMethodNutrient {
   int labMethodId();
 
   int nutrientId();
+
+  class Builder extends LabMethodNutrient_Builder {
+  }
 }

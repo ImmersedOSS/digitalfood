@@ -12,4 +12,7 @@ interface FoundationFood {
   int ndbNumber();
 
   String footnote();
+
+  class Builder extends FoundationFood_Builder {
+  }
 }

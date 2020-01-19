@@ -33,4 +33,7 @@ interface MarketAcquisition {
   String storeState();
 
   String upcCode();
+
+  class Builder extends MarketAcquisition_Builder {
+  }
 }

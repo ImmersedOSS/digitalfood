@@ -29,4 +29,7 @@ interface FoodPortion {
   Optional<String> footnote();
 
   int minYearAcquired();
+
+  class Builder extends FoodPortion_Builder {
+  }
 }

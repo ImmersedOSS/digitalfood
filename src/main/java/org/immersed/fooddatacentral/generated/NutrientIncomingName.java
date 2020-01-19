@@ -12,4 +12,7 @@ interface NutrientIncomingName {
   String name();
 
   int nutrientId();
+
+  class Builder extends NutrientIncomingName_Builder {
+  }
 }

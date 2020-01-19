@@ -12,4 +12,7 @@ interface FoodNutrientSource {
   int code();
 
   String description();
+
+  class Builder extends FoodNutrientSource_Builder {
+  }
 }

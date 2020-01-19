@@ -9,4 +9,7 @@ interface AcquisitionSample {
   int fdcIdOfSampleFood();
 
   int fdcIdOfAcquisitionFood();
+
+  class Builder extends AcquisitionSample_Builder {
+  }
 }

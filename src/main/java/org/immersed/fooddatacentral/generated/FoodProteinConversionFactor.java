@@ -9,4 +9,7 @@ interface FoodProteinConversionFactor {
   int foodNutrientConversionFactorId();
 
   double value();
+
+  class Builder extends FoodProteinConversionFactor_Builder {
+  }
 }

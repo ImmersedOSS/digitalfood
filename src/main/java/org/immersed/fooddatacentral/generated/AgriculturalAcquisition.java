@@ -17,4 +17,7 @@ interface AgriculturalAcquisition {
   String treatment();
 
   String state();
+
+  class Builder extends AgriculturalAcquisition_Builder {
+  }
 }

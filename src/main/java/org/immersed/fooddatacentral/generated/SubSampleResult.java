@@ -14,4 +14,7 @@ interface SubSampleResult {
   int labMethodId();
 
   String nutrientName();
+
+  class Builder extends SubSampleResult_Builder {
+  }
 }

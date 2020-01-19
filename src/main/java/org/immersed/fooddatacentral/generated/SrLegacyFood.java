@@ -9,4 +9,7 @@ interface SrLegacyFood {
   int fdcId();
 
   int ndbNumber();
+
+  class Builder extends SrLegacyFood_Builder {
+  }
 }

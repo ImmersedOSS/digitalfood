@@ -12,4 +12,7 @@ interface FoodAttributeType {
   String name();
 
   String description();
+
+  class Builder extends FoodAttributeType_Builder {
+  }
 }

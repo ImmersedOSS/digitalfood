@@ -10,4 +10,7 @@ interface MeasureUnit {
   int id();
 
   String name();
+
+  class Builder extends MeasureUnit_Builder {
+  }
 }

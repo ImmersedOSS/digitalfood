@@ -16,4 +16,7 @@ interface SurveyFnddsFood {
   LocalDate startDate();
 
   LocalDate endDate();
+
+  class Builder extends SurveyFnddsFood_Builder {
+  }
 }

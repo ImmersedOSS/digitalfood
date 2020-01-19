@@ -22,4 +22,7 @@ interface FoodComponent {
   int dataPoints();
 
   int minYearAcquired();
+
+  class Builder extends FoodComponent_Builder {
+  }
 }

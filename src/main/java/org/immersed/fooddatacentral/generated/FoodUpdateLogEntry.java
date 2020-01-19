@@ -13,4 +13,7 @@ interface FoodUpdateLogEntry {
   String description();
 
   LocalDate lastUpdated();
+
+  class Builder extends FoodUpdateLogEntry_Builder {
+  }
 }

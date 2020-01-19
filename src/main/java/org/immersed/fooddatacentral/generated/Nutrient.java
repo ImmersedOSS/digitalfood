@@ -16,4 +16,7 @@ interface Nutrient {
   double nutrientNbr();
 
   int rank();
+
+  class Builder extends Nutrient_Builder {
+  }
 }

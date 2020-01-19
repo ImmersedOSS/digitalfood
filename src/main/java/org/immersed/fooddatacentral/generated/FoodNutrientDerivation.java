@@ -14,4 +14,7 @@ interface FoodNutrientDerivation {
   String description();
 
   int sourceId();
+
+  class Builder extends FoodNutrientDerivation_Builder {
+  }
 }

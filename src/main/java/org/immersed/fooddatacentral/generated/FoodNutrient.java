@@ -28,4 +28,7 @@ interface FoodNutrient {
   String footnote();
 
   int minYearAcquired();
+
+  class Builder extends FoodNutrient_Builder {
+  }
 }

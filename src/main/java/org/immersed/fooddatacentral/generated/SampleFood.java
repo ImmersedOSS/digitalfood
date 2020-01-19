@@ -7,4 +7,7 @@ import org.inferred.freebuilder.FreeBuilder;
 @FreeBuilder
 interface SampleFood {
   int fdcId();
+
+  class Builder extends SampleFood_Builder {
+  }
 }
