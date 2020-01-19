@@ -9,7 +9,7 @@ import org.inferred.freebuilder.FreeBuilder;
 /**
  * Auto-generated from food_update_log_entry.csv. */
 @FreeBuilder
-interface FoodUpdateLogEntry {
+public interface FoodUpdateLogEntry {
   int id();
 
   String description();

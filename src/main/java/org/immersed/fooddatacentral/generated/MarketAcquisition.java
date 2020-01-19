@@ -9,7 +9,7 @@ import org.inferred.freebuilder.FreeBuilder;
 /**
  * Auto-generated from market_acquisition.csv. */
 @FreeBuilder
-interface MarketAcquisition {
+public interface MarketAcquisition {
   int fdcId();
 
   String brandDescription();

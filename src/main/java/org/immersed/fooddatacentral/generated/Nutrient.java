@@ -8,7 +8,7 @@ import org.inferred.freebuilder.FreeBuilder;
 /**
  * Auto-generated from nutrient.csv. */
 @FreeBuilder
-interface Nutrient {
+public interface Nutrient {
   int id();
 
   String name();

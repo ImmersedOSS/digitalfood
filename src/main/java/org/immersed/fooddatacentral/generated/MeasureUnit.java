@@ -8,7 +8,7 @@ import org.inferred.freebuilder.FreeBuilder;
 /**
  * Auto-generated from measure_unit.csv. */
 @FreeBuilder
-interface MeasureUnit {
+public interface MeasureUnit {
   int id();
 
   String name();

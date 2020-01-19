@@ -8,7 +8,7 @@ import org.inferred.freebuilder.FreeBuilder;
 /**
  * Auto-generated from food_category.csv. */
 @FreeBuilder
-interface FoodCategory {
+public interface FoodCategory {
   int id();
 
   int code();

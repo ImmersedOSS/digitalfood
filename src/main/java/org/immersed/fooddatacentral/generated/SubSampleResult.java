@@ -8,7 +8,7 @@ import org.inferred.freebuilder.FreeBuilder;
 /**
  * Auto-generated from sub_sample_result.csv. */
 @FreeBuilder
-interface SubSampleResult {
+public interface SubSampleResult {
   int foodNutrientId();
 
   double adjustedAmount();

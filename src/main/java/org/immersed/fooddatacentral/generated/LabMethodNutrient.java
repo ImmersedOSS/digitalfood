@@ -8,7 +8,7 @@ import org.inferred.freebuilder.FreeBuilder;
 /**
  * Auto-generated from lab_method_nutrient.csv. */
 @FreeBuilder
-interface LabMethodNutrient {
+public interface LabMethodNutrient {
   int id();
 
   int labMethodId();

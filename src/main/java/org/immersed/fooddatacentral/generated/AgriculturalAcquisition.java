@@ -9,7 +9,7 @@ import org.inferred.freebuilder.FreeBuilder;
 /**
  * Auto-generated from agricultural_acquisition.csv. */
 @FreeBuilder
-interface AgriculturalAcquisition {
+public interface AgriculturalAcquisition {
   int fdcId();
 
   LocalDate acquisitionDate();

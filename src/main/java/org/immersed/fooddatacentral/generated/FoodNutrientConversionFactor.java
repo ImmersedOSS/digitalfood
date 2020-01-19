@@ -8,7 +8,7 @@ import org.inferred.freebuilder.FreeBuilder;
 /**
  * Auto-generated from food_nutrient_conversion_factor.csv. */
 @FreeBuilder
-interface FoodNutrientConversionFactor {
+public interface FoodNutrientConversionFactor {
   int id();
 
   int fdcId();

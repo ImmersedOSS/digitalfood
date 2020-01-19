@@ -8,7 +8,7 @@ import org.inferred.freebuilder.FreeBuilder;
 /**
  * Auto-generated from sr_legacy_food.csv. */
 @FreeBuilder
-interface SrLegacyFood {
+public interface SrLegacyFood {
   int fdcId();
 
   int ndbNumber();

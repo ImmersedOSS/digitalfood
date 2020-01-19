@@ -8,7 +8,7 @@ import org.inferred.freebuilder.FreeBuilder;
 /**
  * Auto-generated from retention_factor.csv. */
 @FreeBuilder
-interface RetentionFactor {
+public interface RetentionFactor {
   int id();
 
   int code();

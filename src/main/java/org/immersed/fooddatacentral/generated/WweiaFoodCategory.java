@@ -8,7 +8,7 @@ import org.inferred.freebuilder.FreeBuilder;
 /**
  * Auto-generated from wweia_food_category.csv. */
 @FreeBuilder
-interface WweiaFoodCategory {
+public interface WweiaFoodCategory {
   int wweiaFoodCategoryCode();
 
   String wweiaFoodCategoryDescription();

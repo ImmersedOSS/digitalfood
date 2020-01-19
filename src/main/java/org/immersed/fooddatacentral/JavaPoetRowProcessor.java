@@ -60,6 +60,7 @@ public class JavaPoetRowProcessor implements RowProcessor
                                    .addSuperinterface(superInterface);
 
         this.dataObjectType = TypeSpec.interfaceBuilder(typeName)
+                                      .addModifiers(Modifier.PUBLIC)
                                       .addAnnotation(FreeBuilder.class)
                                       .addJavadoc("Auto-generated from $L.", fileName);
     }

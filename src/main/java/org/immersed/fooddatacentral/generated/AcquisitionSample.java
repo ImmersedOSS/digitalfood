@@ -8,7 +8,7 @@ import org.inferred.freebuilder.FreeBuilder;
 /**
  * Auto-generated from acquisition_sample.csv. */
 @FreeBuilder
-interface AcquisitionSample {
+public interface AcquisitionSample {
   int fdcIdOfSampleFood();
 
   int fdcIdOfAcquisitionFood();

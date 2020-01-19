@@ -9,7 +9,7 @@ import org.inferred.freebuilder.FreeBuilder;
 /**
  * Auto-generated from branded_food.csv. */
 @FreeBuilder
-interface BrandedFood {
+public interface BrandedFood {
   int fdcId();
 
   String brandOwner();
