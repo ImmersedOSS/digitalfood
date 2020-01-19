@@ -3,11 +3,11 @@ package org.immersed.fooddatacentral;
 import static com.google.common.base.CaseFormat.*;
 
 import java.io.*;
-import java.nio.file.*;
 import java.util.*;
 
 import javax.lang.model.element.*;
 
+import org.immersed.*;
 import org.inferred.freebuilder.*;
 
 import com.google.common.base.*;
@@ -17,7 +17,10 @@ import com.univocity.parsers.common.processor.*;
 
 public class JavaPoetRowProcessor implements RowProcessor
 {
-    private TypeSpec.Builder builder;
+    private TypeSpec.Builder dataObjectType;
+    private TypeSpec.Builder builderType;
+    private MethodSpec.Builder builderCsvMethod;
+
     private ReturnTypeGuesser[] guessers;
 
     public JavaPoetRowProcessor(String fileName)
@@ -25,17 +28,27 @@ public class JavaPoetRowProcessor implements RowProcessor
         String name = fileName.replace(".csv", "");
 
         String typeName = LOWER_UNDERSCORE.to(UPPER_CAMEL, name);
+        String generatedPackage = Constants.generated(Constants.PACKAGE);
+        ClassName rawType = ClassName.get(FoodDataBuilder.class);
 
-        TypeSpec innerBuilder = TypeSpec.classBuilder("Builder")
-                                        .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                                        .superclass(ClassName.get("org.immersed.fooddatacentral.generated",
-                                                typeName + "_Builder"))
-                                        .build();
+        TypeName builderClass = ClassName.get(generatedPackage, typeName, "Builder");
+        TypeName superInterface = ParameterizedTypeName.get(rawType, builderClass);
 
-        this.builder = TypeSpec.interfaceBuilder(typeName)
-                               .addType(innerBuilder)
-                               .addAnnotation(FreeBuilder.class)
-                               .addJavadoc("Auto-generated from $L.", fileName);
+        this.builderCsvMethod = MethodSpec.methodBuilder("fromCsv")
+                                          .addAnnotation(Override.class)
+                                          .addModifiers(Modifier.PUBLIC)
+                                          .addParameter(ParameterSpec.builder(String[].class, "row")
+                                                                     .build())
+                                          .returns(builderClass);
+
+        this.builderType = TypeSpec.classBuilder("Builder")
+                                   .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                                   .superclass(ClassName.get(generatedPackage, typeName + "_Builder"))
+                                   .addSuperinterface(superInterface);
+
+        this.dataObjectType = TypeSpec.interfaceBuilder(typeName)
+                                      .addAnnotation(FreeBuilder.class)
+                                      .addJavadoc("Auto-generated from $L.", fileName);
     }
 
     @Override
@@ -76,14 +89,21 @@ public class JavaPoetRowProcessor implements RowProcessor
                                           .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
                                           .returns(this.guessers[i].bestMatch())
                                           .build();
-            this.builder.addMethod(method);
+            this.dataObjectType.addMethod(method);
         }
+
+        this.builderCsvMethod.addStatement("return this");
+
+        this.builderType.addMethod(this.builderCsvMethod.build());
+
+        this.dataObjectType.addType(builderType.build());
     }
 
     public void saveToDisk() throws IOException
     {
-        JavaFile.builder("org.immersed.fooddatacentral.generated", builder.build())
+        String generatedPackage = Constants.generated(Constants.PACKAGE);
+        JavaFile.builder(generatedPackage, dataObjectType.build())
                 .build()
-                .writeTo(Paths.get("src", "main", "java"));
+                .writeTo(Constants.SOURCE_FOLDER);
     }
 }

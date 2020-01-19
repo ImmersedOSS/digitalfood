@@ -1,5 +1,6 @@
 package org.immersed.fooddatacentral;
 
+import static org.immersed.Constants.*;
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
@@ -16,8 +17,8 @@ public class DataObjectGenerator
     {
         Path home = Files.createDirectories(Constants.HOME);
 
-        try (Stream<Path> stream = Files.walk(
-                Paths.get("src", "main", "java", "org", "immersed", "fooddatacentral", "generated")))
+        Path pathToClear = resolve(SOURCE_FOLDER, generated(Constants.PACKAGE));
+        try (Stream<Path> stream = Files.walk(pathToClear))
         {
             stream.filter(Files::isRegularFile)
                   .forEach(file ->

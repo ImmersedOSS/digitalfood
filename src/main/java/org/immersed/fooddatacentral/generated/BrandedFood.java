@@ -1,14 +1,18 @@
 package org.immersed.fooddatacentral.generated;
 
+import java.lang.Override;
 import java.lang.String;
 import java.time.LocalDate;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
 /**
  * Auto-generated from branded_food.csv. */
 @FreeBuilder
 interface BrandedFood {
-  int fdcId();
+  OptionalInt fdcId();
 
   String brandOwner();
 
@@ -16,7 +20,7 @@ interface BrandedFood {
 
   String ingredients();
 
-  double servingSize();
+  OptionalDouble servingSize();
 
   String servingSizeUnit();
 
@@ -30,6 +34,10 @@ interface BrandedFood {
 
   LocalDate availableDate();
 
-  class Builder extends BrandedFood_Builder {
+  class Builder extends BrandedFood_Builder implements FoodDataBuilder<Builder> {
+    @Override
+    public Builder fromCsv(String[] row) {
+      return this;
+    }
   }
 }

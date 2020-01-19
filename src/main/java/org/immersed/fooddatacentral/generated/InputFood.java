@@ -1,38 +1,46 @@
 package org.immersed.fooddatacentral.generated;
 
+import java.lang.Override;
 import java.lang.String;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
 /**
  * Auto-generated from input_food.csv. */
 @FreeBuilder
 interface InputFood {
-  int id();
+  OptionalInt id();
 
-  int fdcId();
+  OptionalInt fdcId();
 
-  int fdcIdOfInputFood();
+  OptionalInt fdcIdOfInputFood();
 
-  int seqNum();
+  OptionalInt seqNum();
 
-  double amount();
+  OptionalDouble amount();
 
-  int srCode();
+  OptionalInt srCode();
 
   String srDescription();
 
   String unit();
 
-  int portionCode();
+  OptionalInt portionCode();
 
   String portionDescription();
 
-  double gramWeight();
+  OptionalDouble gramWeight();
 
-  int retentionCode();
+  OptionalInt retentionCode();
 
-  int surveyFlag();
+  OptionalInt surveyFlag();
 
-  class Builder extends InputFood_Builder {
+  class Builder extends InputFood_Builder implements FoodDataBuilder<Builder> {
+    @Override
+    public Builder fromCsv(String[] row) {
+      return this;
+    }
   }
 }

@@ -1,18 +1,25 @@
 package org.immersed.fooddatacentral.generated;
 
+import java.lang.Override;
 import java.lang.String;
+import java.util.OptionalInt;
+import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
 /**
  * Auto-generated from nutrient_incoming_name.csv. */
 @FreeBuilder
 interface NutrientIncomingName {
-  int id();
+  OptionalInt id();
 
   String name();
 
-  int nutrientId();
+  OptionalInt nutrientId();
 
-  class Builder extends NutrientIncomingName_Builder {
+  class Builder extends NutrientIncomingName_Builder implements FoodDataBuilder<Builder> {
+    @Override
+    public Builder fromCsv(String[] row) {
+      return this;
+    }
   }
 }
