@@ -1,6 +1,7 @@
 package org.immersed.fooddatacentral.generated;
 
 import java.lang.String;
+import java.time.LocalDate;
 import org.inferred.freebuilder.FreeBuilder;
 
 /**
@@ -13,7 +14,7 @@ interface Food {
 
   String description();
 
-  String foodCategoryId();
+  int foodCategoryId();
 
-  String publicationDate();
+  LocalDate publicationDate();
 }

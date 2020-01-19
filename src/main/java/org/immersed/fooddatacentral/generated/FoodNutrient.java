@@ -15,17 +15,17 @@ interface FoodNutrient {
 
   double amount();
 
-  String dataPoints();
+  int dataPoints();
 
-  String derivationId();
+  int derivationId();
 
-  String min();
+  double min();
 
-  String max();
+  double max();
 
-  String median();
+  double median();
 
   String footnote();
 
-  String minYearAcquired();
+  int minYearAcquired();
 }

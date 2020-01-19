@@ -1,6 +1,6 @@
 package org.immersed.fooddatacentral.generated;
 
-import java.lang.String;
+import java.time.LocalDate;
 import org.inferred.freebuilder.FreeBuilder;
 
 /**
@@ -13,7 +13,7 @@ interface SurveyFnddsFood {
 
   int wweiaCategoryCode();
 
-  String startDate();
+  LocalDate startDate();
 
-  String endDate();
+  LocalDate endDate();
 }

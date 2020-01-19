@@ -49,6 +49,14 @@ public class JavaPoetRowProcessor implements RowProcessor
             for (int i = 0; i < row.length; i++)
             {
                 this.guessers[i].updateState(row[i]);
+
+                if (context.headers()[i].equals("available_date"))
+                {
+                    if (String.class.equals(this.guessers[i].bestMatch()))
+                    {
+                        System.out.println();
+                    }
+                }
             }
         }
     }

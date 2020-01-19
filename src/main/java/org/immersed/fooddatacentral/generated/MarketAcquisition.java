@@ -1,6 +1,7 @@
 package org.immersed.fooddatacentral.generated;
 
 import java.lang.String;
+import java.time.LocalDate;
 import org.inferred.freebuilder.FreeBuilder;
 
 /**
@@ -11,19 +12,19 @@ interface MarketAcquisition {
 
   String brandDescription();
 
-  String expirationDate();
+  LocalDate expirationDate();
 
-  String labelWeight();
+  int labelWeight();
 
   String location();
 
-  String acquisitionDate();
+  LocalDate acquisitionDate();
 
   String salesType();
 
   String sampleLotNbr();
 
-  String sellByDate();
+  LocalDate sellByDate();
 
   String storeCity();
 

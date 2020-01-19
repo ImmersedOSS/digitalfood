@@ -1,6 +1,7 @@
 package org.immersed.fooddatacentral.generated;
 
 import java.lang.String;
+import java.time.LocalDate;
 import org.inferred.freebuilder.FreeBuilder;
 
 /**
@@ -25,7 +26,7 @@ interface BrandedFood {
 
   String dataSource();
 
-  String modifiedDate();
+  LocalDate modifiedDate();
 
-  String availableDate();
+  LocalDate availableDate();
 }

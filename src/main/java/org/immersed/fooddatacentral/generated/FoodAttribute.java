@@ -11,7 +11,7 @@ interface FoodAttribute {
 
   int fdcId();
 
-  String seqNum();
+  int seqNum();
 
   int foodAttributeTypeId();
 

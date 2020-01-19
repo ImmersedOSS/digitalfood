@@ -15,5 +15,5 @@ interface Nutrient {
 
   double nutrientNbr();
 
-  String rank();
+  int rank();
 }

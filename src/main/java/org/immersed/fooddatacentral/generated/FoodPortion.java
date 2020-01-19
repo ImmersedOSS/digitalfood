@@ -11,9 +11,9 @@ interface FoodPortion {
 
   int fdcId();
 
-  String seqNum();
+  int seqNum();
 
-  String amount();
+  double amount();
 
   int measureUnitId();
 
@@ -23,9 +23,9 @@ interface FoodPortion {
 
   double gramWeight();
 
-  String dataPoints();
+  int dataPoints();
 
-  String footnote();
+  int footnote();
 
-  String minYearAcquired();
+  int minYearAcquired();
 }

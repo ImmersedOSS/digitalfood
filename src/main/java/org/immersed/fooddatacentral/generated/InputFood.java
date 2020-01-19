@@ -11,25 +11,25 @@ interface InputFood {
 
   int fdcId();
 
-  String fdcIdOfInputFood();
+  int fdcIdOfInputFood();
 
-  String seqNum();
+  int seqNum();
 
-  String amount();
+  double amount();
 
-  String srCode();
+  int srCode();
 
   String srDescription();
 
   String unit();
 
-  String portionCode();
+  int portionCode();
 
   String portionDescription();
 
-  String gramWeight();
+  double gramWeight();
 
-  String retentionCode();
+  int retentionCode();
 
-  String surveyFlag();
+  int surveyFlag();
 }

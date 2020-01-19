@@ -9,9 +9,9 @@ import org.inferred.freebuilder.FreeBuilder;
 interface SubSampleResult {
   int foodNutrientId();
 
-  String adjustedAmount();
+  double adjustedAmount();
 
-  String labMethodId();
+  int labMethodId();
 
   String nutrientName();
 }

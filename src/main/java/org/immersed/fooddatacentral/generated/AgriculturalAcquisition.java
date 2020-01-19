@@ -1,6 +1,7 @@
 package org.immersed.fooddatacentral.generated;
 
 import java.lang.String;
+import java.time.LocalDate;
 import org.inferred.freebuilder.FreeBuilder;
 
 /**
@@ -9,7 +10,7 @@ import org.inferred.freebuilder.FreeBuilder;
 interface AgriculturalAcquisition {
   int fdcId();
 
-  String acquisitionDate();
+  LocalDate acquisitionDate();
 
   String marketClass();
 

@@ -1,6 +1,7 @@
 package org.immersed.fooddatacentral.generated;
 
 import java.lang.String;
+import java.time.LocalDate;
 import org.inferred.freebuilder.FreeBuilder;
 
 /**
@@ -11,5 +12,5 @@ interface FoodUpdateLogEntry {
 
   String description();
 
-  String lastUpdated();
+  LocalDate lastUpdated();
 }

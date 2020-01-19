@@ -1,5 +1,6 @@
 package org.immersed.fooddatacentral;
 
+import java.time.*;
 import java.util.*;
 import java.util.Map.*;
 import java.util.function.*;
@@ -29,6 +30,7 @@ public class ReturnTypeGuesser
         CHECKERS.put(int.class, safe(Integer::parseInt));
         CHECKERS.put(long.class, safe(Long::parseLong));
         CHECKERS.put(double.class, safe(Double::parseDouble));
+        CHECKERS.put(LocalDate.class, safe(LocalDate::parse));
         CHECKERS.put(String.class, s -> true);
     }
 
@@ -42,6 +44,11 @@ public class ReturnTypeGuesser
 
     public void updateState(String value)
     {
+        if (value == null)
+        {
+            return;
+        }
+
         for (Entry<Class<?>, Boolean> entry : valid.entrySet())
         {
             Class<?> key = entry.getKey();

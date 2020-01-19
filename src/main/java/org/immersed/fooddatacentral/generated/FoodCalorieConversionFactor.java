@@ -1,6 +1,5 @@
 package org.immersed.fooddatacentral.generated;
 
-import java.lang.String;
 import org.inferred.freebuilder.FreeBuilder;
 
 /**
@@ -9,9 +8,9 @@ import org.inferred.freebuilder.FreeBuilder;
 interface FoodCalorieConversionFactor {
   int foodNutrientConversionFactorId();
 
-  String proteinValue();
+  double proteinValue();
 
-  String fatValue();
+  double fatValue();
 
-  String carbohydrateValue();
+  double carbohydrateValue();
 }

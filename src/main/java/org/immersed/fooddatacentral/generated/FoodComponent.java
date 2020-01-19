@@ -13,7 +13,7 @@ interface FoodComponent {
 
   String name();
 
-  String pctWeight();
+  double pctWeight();
 
   String isRefuse();
 
@@ -21,5 +21,5 @@ interface FoodComponent {
 
   int dataPoints();
 
-  String minYearAcquired();
+  int minYearAcquired();
 }
