@@ -5,9 +5,18 @@ package org.immersed.fooddatacentral;
  * 
  * @author Dan Avila
  *
- * @param <T>
+ * @param <T> the builder type.
+ * @param <S> the object type we are building.
  */
-public interface FoodDataBuilder<T>
+public interface FoodDataBuilder<T, S>
 {
+    /**
+     * Populates this builder with the provided row of data.
+     * 
+     * @param row the row of data.
+     * @return this
+     */
     T fromCsv(String[] row);
+
+    S build();
 }

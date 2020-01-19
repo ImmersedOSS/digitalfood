@@ -25,7 +25,7 @@ interface FoodComponent {
 
   int minYearAcquired();
 
-  class Builder extends FoodComponent_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends FoodComponent_Builder implements FoodDataBuilder<Builder, FoodComponent> {
     @Override
     public Builder fromCsv(String[] row) {
       super.id(Integer.parseInt(row[0]));

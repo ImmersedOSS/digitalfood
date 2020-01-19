@@ -13,7 +13,7 @@ interface MeasureUnit {
 
   String name();
 
-  class Builder extends MeasureUnit_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends MeasureUnit_Builder implements FoodDataBuilder<Builder, MeasureUnit> {
     @Override
     public Builder fromCsv(String[] row) {
       super.id(Integer.parseInt(row[0]));

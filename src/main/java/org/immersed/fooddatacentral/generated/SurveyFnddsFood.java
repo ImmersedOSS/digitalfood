@@ -20,7 +20,7 @@ interface SurveyFnddsFood {
 
   LocalDate endDate();
 
-  class Builder extends SurveyFnddsFood_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends SurveyFnddsFood_Builder implements FoodDataBuilder<Builder, SurveyFnddsFood> {
     @Override
     public Builder fromCsv(String[] row) {
       super.fdcId(Integer.parseInt(row[0]));

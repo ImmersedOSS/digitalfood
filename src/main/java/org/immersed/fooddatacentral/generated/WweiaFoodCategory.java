@@ -13,7 +13,7 @@ interface WweiaFoodCategory {
 
   String wweiaFoodCategoryDescription();
 
-  class Builder extends WweiaFoodCategory_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends WweiaFoodCategory_Builder implements FoodDataBuilder<Builder, WweiaFoodCategory> {
     @Override
     public Builder fromCsv(String[] row) {
       super.wweiaFoodCategoryCode(Integer.parseInt(row[0]));

@@ -15,7 +15,7 @@ interface FoodCategory {
 
   String description();
 
-  class Builder extends FoodCategory_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends FoodCategory_Builder implements FoodDataBuilder<Builder, FoodCategory> {
     @Override
     public Builder fromCsv(String[] row) {
       super.id(Integer.parseInt(row[0]));

@@ -31,7 +31,7 @@ interface FoodNutrient {
 
   int minYearAcquired();
 
-  class Builder extends FoodNutrient_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends FoodNutrient_Builder implements FoodDataBuilder<Builder, FoodNutrient> {
     @Override
     public Builder fromCsv(String[] row) {
       super.id(Integer.parseInt(row[0]));

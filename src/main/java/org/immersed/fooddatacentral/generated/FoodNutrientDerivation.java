@@ -17,7 +17,7 @@ interface FoodNutrientDerivation {
 
   int sourceId();
 
-  class Builder extends FoodNutrientDerivation_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends FoodNutrientDerivation_Builder implements FoodDataBuilder<Builder, FoodNutrientDerivation> {
     @Override
     public Builder fromCsv(String[] row) {
       super.id(Integer.parseInt(row[0]));

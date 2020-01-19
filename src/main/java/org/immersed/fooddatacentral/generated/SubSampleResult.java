@@ -17,7 +17,7 @@ interface SubSampleResult {
 
   String nutrientName();
 
-  class Builder extends SubSampleResult_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends SubSampleResult_Builder implements FoodDataBuilder<Builder, SubSampleResult> {
     @Override
     public Builder fromCsv(String[] row) {
       super.foodNutrientId(Integer.parseInt(row[0]));

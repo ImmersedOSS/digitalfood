@@ -20,7 +20,7 @@ interface AgriculturalAcquisition {
 
   String state();
 
-  class Builder extends AgriculturalAcquisition_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends AgriculturalAcquisition_Builder implements FoodDataBuilder<Builder, AgriculturalAcquisition> {
     @Override
     public Builder fromCsv(String[] row) {
       super.fdcId(Integer.parseInt(row[0]));

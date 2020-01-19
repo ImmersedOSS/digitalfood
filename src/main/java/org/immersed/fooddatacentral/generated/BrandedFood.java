@@ -32,7 +32,7 @@ interface BrandedFood {
 
   LocalDate availableDate();
 
-  class Builder extends BrandedFood_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends BrandedFood_Builder implements FoodDataBuilder<Builder, BrandedFood> {
     @Override
     public Builder fromCsv(String[] row) {
       super.fdcId(Integer.parseInt(row[0]));

@@ -13,7 +13,7 @@ interface FoodProteinConversionFactor {
 
   double value();
 
-  class Builder extends FoodProteinConversionFactor_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends FoodProteinConversionFactor_Builder implements FoodDataBuilder<Builder, FoodProteinConversionFactor> {
     @Override
     public Builder fromCsv(String[] row) {
       super.foodNutrientConversionFactorId(Integer.parseInt(row[0]));

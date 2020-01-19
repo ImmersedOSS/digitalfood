@@ -35,7 +35,7 @@ interface InputFood {
 
   int surveyFlag();
 
-  class Builder extends InputFood_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends InputFood_Builder implements FoodDataBuilder<Builder, InputFood> {
     @Override
     public Builder fromCsv(String[] row) {
       super.id(Integer.parseInt(row[0]));

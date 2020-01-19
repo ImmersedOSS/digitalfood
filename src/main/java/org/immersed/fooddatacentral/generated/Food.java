@@ -20,7 +20,7 @@ interface Food {
 
   LocalDate publicationDate();
 
-  class Builder extends Food_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends Food_Builder implements FoodDataBuilder<Builder, Food> {
     @Override
     public Builder fromCsv(String[] row) {
       super.fdcId(Integer.parseInt(row[0]));

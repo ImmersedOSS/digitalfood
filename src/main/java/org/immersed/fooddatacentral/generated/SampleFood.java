@@ -11,7 +11,7 @@ import org.inferred.freebuilder.FreeBuilder;
 interface SampleFood {
   int fdcId();
 
-  class Builder extends SampleFood_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends SampleFood_Builder implements FoodDataBuilder<Builder, SampleFood> {
     @Override
     public Builder fromCsv(String[] row) {
       super.fdcId(Integer.parseInt(row[0]));

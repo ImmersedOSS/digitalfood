@@ -15,7 +15,7 @@ interface LabMethodNutrient {
 
   int nutrientId();
 
-  class Builder extends LabMethodNutrient_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends LabMethodNutrient_Builder implements FoodDataBuilder<Builder, LabMethodNutrient> {
     @Override
     public Builder fromCsv(String[] row) {
       super.id(Integer.parseInt(row[0]));

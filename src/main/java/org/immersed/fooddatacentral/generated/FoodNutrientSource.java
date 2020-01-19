@@ -15,7 +15,7 @@ interface FoodNutrientSource {
 
   String description();
 
-  class Builder extends FoodNutrientSource_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends FoodNutrientSource_Builder implements FoodDataBuilder<Builder, FoodNutrientSource> {
     @Override
     public Builder fromCsv(String[] row) {
       super.id(Integer.parseInt(row[0]));

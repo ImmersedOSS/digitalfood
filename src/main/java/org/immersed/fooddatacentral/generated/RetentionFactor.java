@@ -17,7 +17,7 @@ interface RetentionFactor {
 
   String description();
 
-  class Builder extends RetentionFactor_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends RetentionFactor_Builder implements FoodDataBuilder<Builder, RetentionFactor> {
     @Override
     public Builder fromCsv(String[] row) {
       super.id(Integer.parseInt(row[0]));

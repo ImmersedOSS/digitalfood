@@ -15,7 +15,7 @@ interface NutrientIncomingName {
 
   int nutrientId();
 
-  class Builder extends NutrientIncomingName_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends NutrientIncomingName_Builder implements FoodDataBuilder<Builder, NutrientIncomingName> {
     @Override
     public Builder fromCsv(String[] row) {
       super.id(Integer.parseInt(row[0]));

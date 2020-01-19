@@ -15,7 +15,7 @@ interface FoundationFood {
 
   String footnote();
 
-  class Builder extends FoundationFood_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends FoundationFood_Builder implements FoodDataBuilder<Builder, FoundationFood> {
     @Override
     public Builder fromCsv(String[] row) {
       super.fdcId(Integer.parseInt(row[0]));

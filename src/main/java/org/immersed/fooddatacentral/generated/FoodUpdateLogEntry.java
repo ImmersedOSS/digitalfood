@@ -16,7 +16,7 @@ interface FoodUpdateLogEntry {
 
   LocalDate lastUpdated();
 
-  class Builder extends FoodUpdateLogEntry_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends FoodUpdateLogEntry_Builder implements FoodDataBuilder<Builder, FoodUpdateLogEntry> {
     @Override
     public Builder fromCsv(String[] row) {
       super.id(Integer.parseInt(row[0]));

@@ -19,7 +19,7 @@ interface Nutrient {
 
   int rank();
 
-  class Builder extends Nutrient_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends Nutrient_Builder implements FoodDataBuilder<Builder, Nutrient> {
     @Override
     public Builder fromCsv(String[] row) {
       super.id(Integer.parseInt(row[0]));

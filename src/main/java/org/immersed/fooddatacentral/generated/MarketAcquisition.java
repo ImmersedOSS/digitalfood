@@ -36,7 +36,7 @@ interface MarketAcquisition {
 
   String upcCode();
 
-  class Builder extends MarketAcquisition_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends MarketAcquisition_Builder implements FoodDataBuilder<Builder, MarketAcquisition> {
     @Override
     public Builder fromCsv(String[] row) {
       super.fdcId(Integer.parseInt(row[0]));

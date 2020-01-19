@@ -32,7 +32,7 @@ interface FoodPortion {
 
   int minYearAcquired();
 
-  class Builder extends FoodPortion_Builder implements FoodDataBuilder<Builder> {
+  class Builder extends FoodPortion_Builder implements FoodDataBuilder<Builder, FoodPortion> {
     @Override
     public Builder fromCsv(String[] row) {
       super.id(Integer.parseInt(row[0]));

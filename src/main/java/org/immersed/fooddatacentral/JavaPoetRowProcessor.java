@@ -44,7 +44,8 @@ public class JavaPoetRowProcessor implements RowProcessor
         ClassName rawType = ClassName.get(FoodDataBuilder.class);
 
         TypeName builderClass = ClassName.get(generatedPackage, typeName, "Builder");
-        TypeName superInterface = ParameterizedTypeName.get(rawType, builderClass);
+        TypeName dataClass = ClassName.get(generatedPackage, typeName);
+        TypeName superInterface = ParameterizedTypeName.get(rawType, builderClass, dataClass);
 
         this.builderCsvMethod = MethodSpec.methodBuilder("fromCsv")
                                           .addAnnotation(Override.class)
