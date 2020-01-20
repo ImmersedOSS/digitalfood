@@ -49,7 +49,7 @@ public class DataObjectGeneratorApplication
 
         if (nameOfFileInZip.endsWith(".csv") && !nameOfFileInZip.contains("all_downloaded"))
         {
-            JavaPoetRowProcessor processor = new JavaPoetRowProcessor(nameOfFileInZip);
+            DataObjectGeneratorRowProcessor processor = new DataObjectGeneratorRowProcessor(nameOfFileInZip);
 
             CsvParserSettings settings = Csv.parseRfc4180();
             settings.setProcessor(processor);

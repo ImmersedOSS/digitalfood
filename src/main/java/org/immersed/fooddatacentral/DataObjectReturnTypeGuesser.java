@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 import com.google.common.base.*;
 import com.squareup.javapoet.*;
 
-public class ReturnTypeGuesser
+public class DataObjectReturnTypeGuesser
 {
     private static class Checker implements Predicate<String>
     {
@@ -72,7 +72,7 @@ public class ReturnTypeGuesser
 
     private Map<Checker, Boolean> valid = new LinkedHashMap<>();
 
-    public ReturnTypeGuesser()
+    public DataObjectReturnTypeGuesser()
     {
         CHECKERS.stream()
                 .forEach(k -> valid.put(k, true));

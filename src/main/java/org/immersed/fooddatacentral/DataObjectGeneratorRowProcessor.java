@@ -16,7 +16,7 @@ import com.squareup.javapoet.*;
 import com.univocity.parsers.common.*;
 import com.univocity.parsers.common.processor.*;
 
-public class JavaPoetRowProcessor implements RowProcessor
+public class DataObjectGeneratorRowProcessor implements RowProcessor
 {
     private static final Map<TypeName, String> TYPES = new HashMap<>();
 
@@ -33,9 +33,9 @@ public class JavaPoetRowProcessor implements RowProcessor
     private TypeSpec.Builder builderType;
     private MethodSpec.Builder builderCsvMethod;
 
-    private ReturnTypeGuesser[] guessers;
+    private DataObjectReturnTypeGuesser[] guessers;
 
-    public JavaPoetRowProcessor(String fileName)
+    public DataObjectGeneratorRowProcessor(String fileName)
     {
         String name = fileName.replace(".csv", "");
 
@@ -76,8 +76,8 @@ public class JavaPoetRowProcessor implements RowProcessor
     {
         if (Arrays.equals(context.headers(), row))
         {
-            this.guessers = new ReturnTypeGuesser[row.length];
-            Arrays.setAll(this.guessers, i -> new ReturnTypeGuesser());
+            this.guessers = new DataObjectReturnTypeGuesser[row.length];
+            Arrays.setAll(this.guessers, i -> new DataObjectReturnTypeGuesser());
         }
         else
         {
