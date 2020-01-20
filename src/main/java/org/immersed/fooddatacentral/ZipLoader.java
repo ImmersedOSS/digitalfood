@@ -15,23 +15,6 @@ public final class ZipLoader
     {
         Path home = Files.createDirectories(Constants.HOME);
 
-        Path pathToClear = resolve(SOURCE_FOLDER, generated(Constants.PACKAGE));
-        try (Stream<Path> stream = Files.walk(pathToClear))
-        {
-            stream.filter(Files::isRegularFile)
-                  .forEach(file ->
-                  {
-                      try
-                      {
-                          Files.delete(file);
-                      }
-                      catch (IOException e)
-                      {
-                          e.printStackTrace();
-                      }
-                  });
-        }
-
         try (Stream<Path> stream = Files.walk(home, 1))
         {
             Path zip = stream.filter(p ->
