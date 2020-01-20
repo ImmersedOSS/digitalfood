@@ -1,14 +1,22 @@
 package org.immersed.fooddatacentral;
 
-import java.time.*;
-import java.util.*;
-import java.util.Map.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import com.google.common.base.*;
-import com.squareup.javapoet.*;
+import com.google.common.base.Preconditions;
+import com.squareup.javapoet.ParameterizedTypeName;
+import com.squareup.javapoet.TypeName;
 
 public class DataObjectReturnTypeGuesser
 {
@@ -16,7 +24,6 @@ public class DataObjectReturnTypeGuesser
     {
         private final Function<String, ?> checker;
         private final Class<?> type;
-        private boolean optional = false;
 
         public Checker(Class<?> type, Function<String, ?> function)
         {
@@ -37,19 +44,11 @@ public class DataObjectReturnTypeGuesser
                 return false;
             }
         }
-
-        public TypeName getType()
-        {
-            if (optional)
-            {
-                return ParameterizedTypeName.get(Optional.class, type);
-            }
-
-            return TypeName.get(type);
-        }
     }
 
     private static final List<Checker> CHECKERS = new ArrayList<>();
+
+    private static final Map<Class<?>, Class<?>> OPTIONAL_TYPES = new HashMap<>();
 
     static
     {
@@ -68,9 +67,14 @@ public class DataObjectReturnTypeGuesser
         CHECKERS.add(new Checker(double.class, Double::parseDouble));
         CHECKERS.add(new Checker(LocalDate.class, LocalDate::parse));
         CHECKERS.add(new Checker(String.class, s -> s));
+
+        OPTIONAL_TYPES.put(int.class, OptionalInt.class);
+        OPTIONAL_TYPES.put(long.class, OptionalLong.class);
+        OPTIONAL_TYPES.put(double.class, OptionalDouble.class);
     }
 
     private Map<Checker, Boolean> valid = new LinkedHashMap<>();
+    private boolean optional = false;
 
     public DataObjectReturnTypeGuesser()
     {
@@ -80,14 +84,14 @@ public class DataObjectReturnTypeGuesser
 
     public void updateState(String value)
     {
+        if (value == null)
+        {
+            this.optional = true;
+            return;
+        }
+
         for (Entry<Checker, Boolean> entry : valid.entrySet())
         {
-            if (value == null)
-            {
-                entry.getKey().optional = true;
-                return;
-            }
-
             Checker checker = entry.getKey();
             boolean currentState = entry.getValue();
             entry.setValue(currentState && checker.test(value));
@@ -98,10 +102,24 @@ public class DataObjectReturnTypeGuesser
     {
         for (Entry<Checker, Boolean> entry : valid.entrySet())
         {
-            if (Boolean.TRUE.equals(entry.getValue()))
+            if (entry.getValue()
+                     .booleanValue())
             {
                 Checker checker = entry.getKey();
-                return checker.getType();
+                Class<?> type = checker.type;
+
+                if (optional && OPTIONAL_TYPES.containsKey(type))
+                {
+                    Class<?> optionalType = OPTIONAL_TYPES.get(type);
+
+                    return TypeName.get(optionalType);
+                }
+                else if (optional)
+                {
+                    return ParameterizedTypeName.get(Optional.class, type);
+                }
+
+                return TypeName.get(type);
             }
         }
 

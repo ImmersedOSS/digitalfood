@@ -3,6 +3,7 @@ package org.immersed.fooddatacentral.generated;
 import java.lang.Override;
 import java.lang.String;
 import java.time.LocalDate;
+import java.util.OptionalInt;
 import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
@@ -16,7 +17,7 @@ public interface Food {
 
   String description();
 
-  int foodCategoryId();
+  OptionalInt foodCategoryId();
 
   LocalDate publicationDate();
 
@@ -26,7 +27,7 @@ public interface Food {
       super.fdcId(Integer.parseInt(row[0]));
       super.dataType(row[1]);
       super.description(row[2]);
-      super.foodCategoryId(Integer.parseInt(row[3]));
+      super.foodCategoryId(org.immersed.fooddatacentral.OptionalSupport.parseInt(row[3]));
       super.publicationDate(LocalDate.parse(row[4]));
       return this;
     }

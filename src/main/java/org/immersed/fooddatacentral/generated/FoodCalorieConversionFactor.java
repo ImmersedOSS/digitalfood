@@ -2,6 +2,7 @@ package org.immersed.fooddatacentral.generated;
 
 import java.lang.Override;
 import java.lang.String;
+import java.util.OptionalDouble;
 import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
@@ -11,19 +12,19 @@ import org.inferred.freebuilder.FreeBuilder;
 public interface FoodCalorieConversionFactor {
   int foodNutrientConversionFactorId();
 
-  double proteinValue();
+  OptionalDouble proteinValue();
 
-  double fatValue();
+  OptionalDouble fatValue();
 
-  double carbohydrateValue();
+  OptionalDouble carbohydrateValue();
 
   class Builder extends FoodCalorieConversionFactor_Builder implements FoodDataBuilder<Builder, FoodCalorieConversionFactor> {
     @Override
     public Builder fromCsv(String[] row) {
       super.foodNutrientConversionFactorId(Integer.parseInt(row[0]));
-      super.proteinValue(Double.parseDouble(row[1]));
-      super.fatValue(Double.parseDouble(row[2]));
-      super.carbohydrateValue(Double.parseDouble(row[3]));
+      super.proteinValue(org.immersed.fooddatacentral.OptionalSupport.parseDouble(row[1]));
+      super.fatValue(org.immersed.fooddatacentral.OptionalSupport.parseDouble(row[2]));
+      super.carbohydrateValue(org.immersed.fooddatacentral.OptionalSupport.parseDouble(row[3]));
       return this;
     }
   }

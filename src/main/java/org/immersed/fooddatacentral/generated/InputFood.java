@@ -2,6 +2,9 @@ package org.immersed.fooddatacentral.generated;
 
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
@@ -13,44 +16,44 @@ public interface InputFood {
 
   int fdcId();
 
-  int fdcIdOfInputFood();
+  OptionalInt fdcIdOfInputFood();
 
-  int seqNum();
+  OptionalInt seqNum();
 
-  double amount();
+  OptionalDouble amount();
 
-  int srCode();
+  OptionalInt srCode();
 
-  String srDescription();
+  Optional<String> srDescription();
 
-  String unit();
+  Optional<String> unit();
 
-  int portionCode();
+  OptionalInt portionCode();
 
-  String portionDescription();
+  Optional<String> portionDescription();
 
-  double gramWeight();
+  OptionalDouble gramWeight();
 
-  int retentionCode();
+  OptionalInt retentionCode();
 
-  int surveyFlag();
+  OptionalInt surveyFlag();
 
   class Builder extends InputFood_Builder implements FoodDataBuilder<Builder, InputFood> {
     @Override
     public Builder fromCsv(String[] row) {
       super.id(Integer.parseInt(row[0]));
       super.fdcId(Integer.parseInt(row[1]));
-      super.fdcIdOfInputFood(Integer.parseInt(row[2]));
-      super.seqNum(Integer.parseInt(row[3]));
-      super.amount(Double.parseDouble(row[4]));
-      super.srCode(Integer.parseInt(row[5]));
-      super.srDescription(row[6]);
-      super.unit(row[7]);
-      super.portionCode(Integer.parseInt(row[8]));
-      super.portionDescription(row[9]);
-      super.gramWeight(Double.parseDouble(row[10]));
-      super.retentionCode(Integer.parseInt(row[11]));
-      super.surveyFlag(Integer.parseInt(row[12]));
+      super.fdcIdOfInputFood(org.immersed.fooddatacentral.OptionalSupport.parseInt(row[2]));
+      super.seqNum(org.immersed.fooddatacentral.OptionalSupport.parseInt(row[3]));
+      super.amount(org.immersed.fooddatacentral.OptionalSupport.parseDouble(row[4]));
+      super.srCode(org.immersed.fooddatacentral.OptionalSupport.parseInt(row[5]));
+      super.srDescription(Optional.ofNullable(row[6]));
+      super.unit(Optional.ofNullable(row[7]));
+      super.portionCode(org.immersed.fooddatacentral.OptionalSupport.parseInt(row[8]));
+      super.portionDescription(Optional.ofNullable(row[9]));
+      super.gramWeight(org.immersed.fooddatacentral.OptionalSupport.parseDouble(row[10]));
+      super.retentionCode(org.immersed.fooddatacentral.OptionalSupport.parseInt(row[11]));
+      super.surveyFlag(org.immersed.fooddatacentral.OptionalSupport.parseInt(row[12]));
       return this;
     }
   }

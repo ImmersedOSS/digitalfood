@@ -2,6 +2,8 @@ package org.immersed.fooddatacentral.generated;
 
 import java.lang.Override;
 import java.lang.String;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
@@ -11,9 +13,9 @@ import org.inferred.freebuilder.FreeBuilder;
 public interface SubSampleResult {
   int foodNutrientId();
 
-  double adjustedAmount();
+  OptionalDouble adjustedAmount();
 
-  int labMethodId();
+  OptionalInt labMethodId();
 
   String nutrientName();
 
@@ -21,8 +23,8 @@ public interface SubSampleResult {
     @Override
     public Builder fromCsv(String[] row) {
       super.foodNutrientId(Integer.parseInt(row[0]));
-      super.adjustedAmount(Double.parseDouble(row[1]));
-      super.labMethodId(Integer.parseInt(row[2]));
+      super.adjustedAmount(org.immersed.fooddatacentral.OptionalSupport.parseDouble(row[1]));
+      super.labMethodId(org.immersed.fooddatacentral.OptionalSupport.parseInt(row[2]));
       super.nutrientName(row[3]);
       return this;
     }

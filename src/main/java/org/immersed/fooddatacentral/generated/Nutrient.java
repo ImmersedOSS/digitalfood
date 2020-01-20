@@ -2,6 +2,7 @@ package org.immersed.fooddatacentral.generated;
 
 import java.lang.Override;
 import java.lang.String;
+import java.util.OptionalInt;
 import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
@@ -17,7 +18,7 @@ public interface Nutrient {
 
   double nutrientNbr();
 
-  int rank();
+  OptionalInt rank();
 
   class Builder extends Nutrient_Builder implements FoodDataBuilder<Builder, Nutrient> {
     @Override
@@ -26,7 +27,7 @@ public interface Nutrient {
       super.name(row[1]);
       super.unitName(row[2]);
       super.nutrientNbr(Double.parseDouble(row[3]));
-      super.rank(Integer.parseInt(row[4]));
+      super.rank(org.immersed.fooddatacentral.OptionalSupport.parseInt(row[4]));
       return this;
     }
   }

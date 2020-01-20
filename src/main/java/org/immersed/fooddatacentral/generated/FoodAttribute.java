@@ -2,6 +2,8 @@ package org.immersed.fooddatacentral.generated;
 
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
+import java.util.OptionalInt;
 import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
@@ -13,23 +15,23 @@ public interface FoodAttribute {
 
   int fdcId();
 
-  int seqNum();
+  OptionalInt seqNum();
 
   int foodAttributeTypeId();
 
-  String name();
+  Optional<String> name();
 
-  String value();
+  Optional<String> value();
 
   class Builder extends FoodAttribute_Builder implements FoodDataBuilder<Builder, FoodAttribute> {
     @Override
     public Builder fromCsv(String[] row) {
       super.id(Integer.parseInt(row[0]));
       super.fdcId(Integer.parseInt(row[1]));
-      super.seqNum(Integer.parseInt(row[2]));
+      super.seqNum(org.immersed.fooddatacentral.OptionalSupport.parseInt(row[2]));
       super.foodAttributeTypeId(Integer.parseInt(row[3]));
-      super.name(row[4]);
-      super.value(row[5]);
+      super.name(Optional.ofNullable(row[4]));
+      super.value(Optional.ofNullable(row[5]));
       return this;
     }
   }

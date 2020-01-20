@@ -2,19 +2,31 @@ package org.immersed.fooddatacentral;
 
 import static com.google.common.base.CaseFormat.*;
 
-import java.io.*;
-import java.time.*;
-import java.util.*;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
-import javax.lang.model.element.*;
+import javax.lang.model.element.Modifier;
 
-import org.immersed.*;
-import org.inferred.freebuilder.*;
+import org.immersed.Constants;
+import org.inferred.freebuilder.FreeBuilder;
 
-import com.google.common.base.*;
-import com.squareup.javapoet.*;
-import com.univocity.parsers.common.*;
-import com.univocity.parsers.common.processor.*;
+import com.google.common.base.Preconditions;
+import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.CodeBlock;
+import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.ParameterSpec;
+import com.squareup.javapoet.ParameterizedTypeName;
+import com.squareup.javapoet.TypeName;
+import com.squareup.javapoet.TypeSpec;
+import com.univocity.parsers.common.ParsingContext;
+import com.univocity.parsers.common.processor.RowProcessor;
 
 public class DataObjectGeneratorRowProcessor implements RowProcessor
 {
@@ -27,6 +39,9 @@ public class DataObjectGeneratorRowProcessor implements RowProcessor
         TYPES.put(TypeName.LONG, "Long.parseLong");
         TYPES.put(TypeName.DOUBLE, "Double.parseDouble");
         TYPES.put(TypeName.get(LocalDate.class), "LocalDate.parse");
+        TYPES.put(TypeName.get(OptionalInt.class), "org.immersed.fooddatacentral.OptionalSupport.parseInt");
+        TYPES.put(TypeName.get(OptionalLong.class), "org.immersed.fooddatacentral.OptionalSupport.parseLong");
+        TYPES.put(TypeName.get(OptionalDouble.class), "org.immersed.fooddatacentral.OptionalSupport.parseDouble");
     }
 
     private TypeSpec.Builder dataObjectType;

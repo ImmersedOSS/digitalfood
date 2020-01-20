@@ -2,6 +2,8 @@ package org.immersed.fooddatacentral.generated;
 
 import java.lang.Override;
 import java.lang.String;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
@@ -15,7 +17,7 @@ public interface FoodComponent {
 
   String name();
 
-  double pctWeight();
+  OptionalDouble pctWeight();
 
   boolean isRefuse();
 
@@ -23,7 +25,7 @@ public interface FoodComponent {
 
   int dataPoints();
 
-  int minYearAcquired();
+  OptionalInt minYearAcquired();
 
   class Builder extends FoodComponent_Builder implements FoodDataBuilder<Builder, FoodComponent> {
     @Override
@@ -31,11 +33,11 @@ public interface FoodComponent {
       super.id(Integer.parseInt(row[0]));
       super.fdcId(Integer.parseInt(row[1]));
       super.name(row[2]);
-      super.pctWeight(Double.parseDouble(row[3]));
+      super.pctWeight(org.immersed.fooddatacentral.OptionalSupport.parseDouble(row[3]));
       super.isRefuse("Y".equals(row[4]));
       super.gramWeight(Double.parseDouble(row[5]));
       super.dataPoints(Integer.parseInt(row[6]));
-      super.minYearAcquired(Integer.parseInt(row[7]));
+      super.minYearAcquired(org.immersed.fooddatacentral.OptionalSupport.parseInt(row[7]));
       return this;
     }
   }

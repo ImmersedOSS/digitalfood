@@ -2,6 +2,9 @@ package org.immersed.fooddatacentral.generated;
 
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
@@ -17,19 +20,19 @@ public interface FoodNutrient {
 
   double amount();
 
-  int dataPoints();
+  OptionalInt dataPoints();
 
-  int derivationId();
+  OptionalInt derivationId();
 
-  double min();
+  OptionalDouble min();
 
-  double max();
+  OptionalDouble max();
 
-  double median();
+  OptionalDouble median();
 
-  String footnote();
+  Optional<String> footnote();
 
-  int minYearAcquired();
+  OptionalInt minYearAcquired();
 
   class Builder extends FoodNutrient_Builder implements FoodDataBuilder<Builder, FoodNutrient> {
     @Override
@@ -38,13 +41,13 @@ public interface FoodNutrient {
       super.fdcId(Integer.parseInt(row[1]));
       super.nutrientId(Integer.parseInt(row[2]));
       super.amount(Double.parseDouble(row[3]));
-      super.dataPoints(Integer.parseInt(row[4]));
-      super.derivationId(Integer.parseInt(row[5]));
-      super.min(Double.parseDouble(row[6]));
-      super.max(Double.parseDouble(row[7]));
-      super.median(Double.parseDouble(row[8]));
-      super.footnote(row[9]);
-      super.minYearAcquired(Integer.parseInt(row[10]));
+      super.dataPoints(org.immersed.fooddatacentral.OptionalSupport.parseInt(row[4]));
+      super.derivationId(org.immersed.fooddatacentral.OptionalSupport.parseInt(row[5]));
+      super.min(org.immersed.fooddatacentral.OptionalSupport.parseDouble(row[6]));
+      super.max(org.immersed.fooddatacentral.OptionalSupport.parseDouble(row[7]));
+      super.median(org.immersed.fooddatacentral.OptionalSupport.parseDouble(row[8]));
+      super.footnote(Optional.ofNullable(row[9]));
+      super.minYearAcquired(org.immersed.fooddatacentral.OptionalSupport.parseInt(row[10]));
       return this;
     }
   }

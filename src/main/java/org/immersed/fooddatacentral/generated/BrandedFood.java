@@ -3,6 +3,7 @@ package org.immersed.fooddatacentral.generated;
 import java.lang.Override;
 import java.lang.String;
 import java.time.LocalDate;
+import java.util.Optional;
 import org.immersed.fooddatacentral.FoodDataBuilder;
 import org.inferred.freebuilder.FreeBuilder;
 
@@ -12,40 +13,40 @@ import org.inferred.freebuilder.FreeBuilder;
 public interface BrandedFood {
   int fdcId();
 
-  String brandOwner();
+  Optional<String> brandOwner();
 
   String gtinUpc();
 
-  String ingredients();
+  Optional<String> ingredients();
 
   double servingSize();
 
   String servingSizeUnit();
 
-  String householdServingFulltext();
+  Optional<String> householdServingFulltext();
 
-  String brandedFoodCategory();
+  Optional<String> brandedFoodCategory();
 
   String dataSource();
 
   LocalDate modifiedDate();
 
-  LocalDate availableDate();
+  Optional<LocalDate> availableDate();
 
   class Builder extends BrandedFood_Builder implements FoodDataBuilder<Builder, BrandedFood> {
     @Override
     public Builder fromCsv(String[] row) {
       super.fdcId(Integer.parseInt(row[0]));
-      super.brandOwner(row[1]);
+      super.brandOwner(Optional.ofNullable(row[1]));
       super.gtinUpc(row[2]);
-      super.ingredients(row[3]);
+      super.ingredients(Optional.ofNullable(row[3]));
       super.servingSize(Double.parseDouble(row[4]));
       super.servingSizeUnit(row[5]);
-      super.householdServingFulltext(row[6]);
-      super.brandedFoodCategory(row[7]);
+      super.householdServingFulltext(Optional.ofNullable(row[6]));
+      super.brandedFoodCategory(Optional.ofNullable(row[7]));
       super.dataSource(row[8]);
       super.modifiedDate(LocalDate.parse(row[9]));
-      super.availableDate(LocalDate.parse(row[10]));
+      super.availableDate(Optional.ofNullable(LocalDate.parse(row[10])));
       return this;
     }
   }
