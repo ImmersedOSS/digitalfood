@@ -8,7 +8,7 @@ package org.immersed.fooddatacentral;
  * @param <T> the builder type.
  * @param <S> the object type we are building.
  */
-public interface FoodDataBuilder<T, S>
+public interface FoodDataBuilder<T extends FoodDataBuilder<T, S>, S>
 {
     /**
      * Populates this builder with the provided row of data.
