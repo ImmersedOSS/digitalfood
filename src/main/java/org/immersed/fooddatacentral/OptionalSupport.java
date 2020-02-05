@@ -6,6 +6,10 @@ import java.util.OptionalLong;
 
 public class OptionalSupport
 {
+    private OptionalSupport()
+    {
+    }
+
     public static final OptionalInt parseInt(String value)
     {
         try

@@ -14,6 +14,7 @@ public final class CsvDataset<T extends FoodDataBuilder<T, S>, S>
         @Override
         public void processStarted(ParsingContext context)
         {
+            // NOOP
         }
 
         @Override
@@ -29,6 +30,7 @@ public final class CsvDataset<T extends FoodDataBuilder<T, S>, S>
         @Override
         public void processEnded(ParsingContext context)
         {
+            // NOOP
         }
 
     }

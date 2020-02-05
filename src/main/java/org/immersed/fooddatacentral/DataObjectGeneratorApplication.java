@@ -2,16 +2,19 @@ package org.immersed.fooddatacentral;
 
 import static org.immersed.Constants.*;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.Collections;
 import java.util.stream.Stream;
-import java.util.zip.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import org.immersed.Constants;
 
-import com.univocity.parsers.csv.*;
+import com.univocity.parsers.csv.Csv;
+import com.univocity.parsers.csv.CsvParser;
+import com.univocity.parsers.csv.CsvParserSettings;
 
 public class DataObjectGeneratorApplication
 {
@@ -29,7 +32,7 @@ public class DataObjectGeneratorApplication
                       }
                       catch (IOException e)
                       {
-                          e.printStackTrace();
+                          throw new IllegalStateException(e);
                       }
                   });
         }
