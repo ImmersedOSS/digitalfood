@@ -10,271 +10,518 @@ import org.immersed.fooddatacentral.CsvDataset;
 import org.immersed.fooddatacentral.ZipLoader;
 
 public final class Datasets {
-  private static final List<WweiaFoodCategory> WWEIA_FOOD_CATEGORY_LIST;
+  private static List<WweiaFoodCategory> wweiaFoodCategoryList;
 
-  private static final List<FoodCategory> FOOD_CATEGORY_LIST;
+  private static List<FoodCategory> foodCategoryList;
 
-  private static final List<RetentionFactor> RETENTION_FACTOR_LIST;
+  private static List<RetentionFactor> retentionFactorList;
 
-  private static final List<FoodAttributeType> FOOD_ATTRIBUTE_TYPE_LIST;
+  private static List<FoodAttributeType> foodAttributeTypeList;
 
-  private static final List<Nutrient> NUTRIENT_LIST;
+  private static List<Nutrient> nutrientList;
 
-  private static final List<NutrientIncomingName> NUTRIENT_INCOMING_NAME_LIST;
+  private static List<NutrientIncomingName> nutrientIncomingNameList;
 
-  private static final List<MeasureUnit> MEASURE_UNIT_LIST;
+  private static List<MeasureUnit> measureUnitList;
 
-  private static final List<FoodNutrientSource> FOOD_NUTRIENT_SOURCE_LIST;
+  private static List<FoodNutrientSource> foodNutrientSourceList;
 
-  private static final List<FoodNutrientDerivation> FOOD_NUTRIENT_DERIVATION_LIST;
+  private static List<FoodNutrientDerivation> foodNutrientDerivationList;
 
-  private static final List<LabMethod> LAB_METHOD_LIST;
+  private static List<LabMethod> labMethodList;
 
-  private static final List<LabMethodCode> LAB_METHOD_CODE_LIST;
+  private static List<LabMethodCode> labMethodCodeList;
 
-  private static final List<LabMethodNutrient> LAB_METHOD_NUTRIENT_LIST;
+  private static List<LabMethodNutrient> labMethodNutrientList;
 
-  private static final List<Food> FOOD_LIST;
+  private static List<Food> foodList;
 
-  private static final List<FoodNutrient> FOOD_NUTRIENT_LIST;
+  private static List<FoodNutrient> foodNutrientList;
 
-  private static final List<FoodPortion> FOOD_PORTION_LIST;
+  private static List<FoodPortion> foodPortionList;
 
-  private static final List<FoodComponent> FOOD_COMPONENT_LIST;
+  private static List<FoodComponent> foodComponentList;
 
-  private static final List<AgriculturalAcquisition> AGRICULTURAL_ACQUISITION_LIST;
+  private static List<AgriculturalAcquisition> agriculturalAcquisitionList;
 
-  private static final List<SurveyFnddsFood> SURVEY_FNDDS_FOOD_LIST;
+  private static List<SurveyFnddsFood> surveyFnddsFoodList;
 
-  private static final List<BrandedFood> BRANDED_FOOD_LIST;
+  private static List<BrandedFood> brandedFoodList;
 
-  private static final List<FoodUpdateLogEntry> FOOD_UPDATE_LOG_ENTRY_LIST;
+  private static List<FoodUpdateLogEntry> foodUpdateLogEntryList;
 
-  private static final List<SrLegacyFood> SR_LEGACY_FOOD_LIST;
+  private static List<SrLegacyFood> srLegacyFoodList;
 
-  private static final List<FoundationFood> FOUNDATION_FOOD_LIST;
+  private static List<FoundationFood> foundationFoodList;
 
-  private static final List<SampleFood> SAMPLE_FOOD_LIST;
+  private static List<SampleFood> sampleFoodList;
 
-  private static final List<SubSampleFood> SUB_SAMPLE_FOOD_LIST;
+  private static List<SubSampleFood> subSampleFoodList;
 
-  private static final List<SubSampleResult> SUB_SAMPLE_RESULT_LIST;
+  private static List<SubSampleResult> subSampleResultList;
 
-  private static final List<MarketAcquisition> MARKET_ACQUISITION_LIST;
+  private static List<MarketAcquisition> marketAcquisitionList;
 
-  private static final List<AcquisitionSample> ACQUISITION_SAMPLE_LIST;
+  private static List<AcquisitionSample> acquisitionSampleList;
 
-  private static final List<InputFood> INPUT_FOOD_LIST;
+  private static List<InputFood> inputFoodList;
 
-  private static final List<FoodAttribute> FOOD_ATTRIBUTE_LIST;
+  private static List<FoodAttribute> foodAttributeList;
 
-  private static final List<FoodCalorieConversionFactor> FOOD_CALORIE_CONVERSION_FACTOR_LIST;
+  private static List<FoodCalorieConversionFactor> foodCalorieConversionFactorList;
 
-  private static final List<FoodProteinConversionFactor> FOOD_PROTEIN_CONVERSION_FACTOR_LIST;
+  private static List<FoodProteinConversionFactor> foodProteinConversionFactorList;
 
-  private static final List<FoodNutrientConversionFactor> FOOD_NUTRIENT_CONVERSION_FACTOR_LIST;
+  private static List<FoodNutrientConversionFactor> foodNutrientConversionFactorList;
 
-  static {
+  private Datasets() {
+  }
+
+  public static List<WweiaFoodCategory> wweiaFoodCategories() {
     try (ZipFile zipFile = ZipLoader.load())
     {
-      ZipEntry wweiaFoodCategory = zipFile.getEntry("wweia_food_category.csv");
-      WWEIA_FOOD_CATEGORY_LIST = new CsvDataset<>(new WweiaFoodCategory.Builder(), zipFile.getInputStream(wweiaFoodCategory)).getData();
-      ZipEntry foodCategory = zipFile.getEntry("food_category.csv");
-      FOOD_CATEGORY_LIST = new CsvDataset<>(new FoodCategory.Builder(), zipFile.getInputStream(foodCategory)).getData();
-      ZipEntry retentionFactor = zipFile.getEntry("retention_factor.csv");
-      RETENTION_FACTOR_LIST = new CsvDataset<>(new RetentionFactor.Builder(), zipFile.getInputStream(retentionFactor)).getData();
-      ZipEntry foodAttributeType = zipFile.getEntry("food_attribute_type.csv");
-      FOOD_ATTRIBUTE_TYPE_LIST = new CsvDataset<>(new FoodAttributeType.Builder(), zipFile.getInputStream(foodAttributeType)).getData();
-      ZipEntry nutrient = zipFile.getEntry("nutrient.csv");
-      NUTRIENT_LIST = new CsvDataset<>(new Nutrient.Builder(), zipFile.getInputStream(nutrient)).getData();
-      ZipEntry nutrientIncomingName = zipFile.getEntry("nutrient_incoming_name.csv");
-      NUTRIENT_INCOMING_NAME_LIST = new CsvDataset<>(new NutrientIncomingName.Builder(), zipFile.getInputStream(nutrientIncomingName)).getData();
-      ZipEntry measureUnit = zipFile.getEntry("measure_unit.csv");
-      MEASURE_UNIT_LIST = new CsvDataset<>(new MeasureUnit.Builder(), zipFile.getInputStream(measureUnit)).getData();
-      ZipEntry foodNutrientSource = zipFile.getEntry("food_nutrient_source.csv");
-      FOOD_NUTRIENT_SOURCE_LIST = new CsvDataset<>(new FoodNutrientSource.Builder(), zipFile.getInputStream(foodNutrientSource)).getData();
-      ZipEntry foodNutrientDerivation = zipFile.getEntry("food_nutrient_derivation.csv");
-      FOOD_NUTRIENT_DERIVATION_LIST = new CsvDataset<>(new FoodNutrientDerivation.Builder(), zipFile.getInputStream(foodNutrientDerivation)).getData();
-      ZipEntry labMethod = zipFile.getEntry("lab_method.csv");
-      LAB_METHOD_LIST = new CsvDataset<>(new LabMethod.Builder(), zipFile.getInputStream(labMethod)).getData();
-      ZipEntry labMethodCode = zipFile.getEntry("lab_method_code.csv");
-      LAB_METHOD_CODE_LIST = new CsvDataset<>(new LabMethodCode.Builder(), zipFile.getInputStream(labMethodCode)).getData();
-      ZipEntry labMethodNutrient = zipFile.getEntry("lab_method_nutrient.csv");
-      LAB_METHOD_NUTRIENT_LIST = new CsvDataset<>(new LabMethodNutrient.Builder(), zipFile.getInputStream(labMethodNutrient)).getData();
-      ZipEntry food = zipFile.getEntry("food.csv");
-      FOOD_LIST = new CsvDataset<>(new Food.Builder(), zipFile.getInputStream(food)).getData();
-      ZipEntry foodNutrient = zipFile.getEntry("food_nutrient.csv");
-      FOOD_NUTRIENT_LIST = new CsvDataset<>(new FoodNutrient.Builder(), zipFile.getInputStream(foodNutrient)).getData();
-      ZipEntry foodPortion = zipFile.getEntry("food_portion.csv");
-      FOOD_PORTION_LIST = new CsvDataset<>(new FoodPortion.Builder(), zipFile.getInputStream(foodPortion)).getData();
-      ZipEntry foodComponent = zipFile.getEntry("food_component.csv");
-      FOOD_COMPONENT_LIST = new CsvDataset<>(new FoodComponent.Builder(), zipFile.getInputStream(foodComponent)).getData();
-      ZipEntry agriculturalAcquisition = zipFile.getEntry("agricultural_acquisition.csv");
-      AGRICULTURAL_ACQUISITION_LIST = new CsvDataset<>(new AgriculturalAcquisition.Builder(), zipFile.getInputStream(agriculturalAcquisition)).getData();
-      ZipEntry surveyFnddsFood = zipFile.getEntry("survey_fndds_food.csv");
-      SURVEY_FNDDS_FOOD_LIST = new CsvDataset<>(new SurveyFnddsFood.Builder(), zipFile.getInputStream(surveyFnddsFood)).getData();
-      ZipEntry brandedFood = zipFile.getEntry("branded_food.csv");
-      BRANDED_FOOD_LIST = new CsvDataset<>(new BrandedFood.Builder(), zipFile.getInputStream(brandedFood)).getData();
-      ZipEntry foodUpdateLogEntry = zipFile.getEntry("food_update_log_entry.csv");
-      FOOD_UPDATE_LOG_ENTRY_LIST = new CsvDataset<>(new FoodUpdateLogEntry.Builder(), zipFile.getInputStream(foodUpdateLogEntry)).getData();
-      ZipEntry srLegacyFood = zipFile.getEntry("sr_legacy_food.csv");
-      SR_LEGACY_FOOD_LIST = new CsvDataset<>(new SrLegacyFood.Builder(), zipFile.getInputStream(srLegacyFood)).getData();
-      ZipEntry foundationFood = zipFile.getEntry("foundation_food.csv");
-      FOUNDATION_FOOD_LIST = new CsvDataset<>(new FoundationFood.Builder(), zipFile.getInputStream(foundationFood)).getData();
-      ZipEntry sampleFood = zipFile.getEntry("sample_food.csv");
-      SAMPLE_FOOD_LIST = new CsvDataset<>(new SampleFood.Builder(), zipFile.getInputStream(sampleFood)).getData();
-      ZipEntry subSampleFood = zipFile.getEntry("sub_sample_food.csv");
-      SUB_SAMPLE_FOOD_LIST = new CsvDataset<>(new SubSampleFood.Builder(), zipFile.getInputStream(subSampleFood)).getData();
-      ZipEntry subSampleResult = zipFile.getEntry("sub_sample_result.csv");
-      SUB_SAMPLE_RESULT_LIST = new CsvDataset<>(new SubSampleResult.Builder(), zipFile.getInputStream(subSampleResult)).getData();
-      ZipEntry marketAcquisition = zipFile.getEntry("market_acquisition.csv");
-      MARKET_ACQUISITION_LIST = new CsvDataset<>(new MarketAcquisition.Builder(), zipFile.getInputStream(marketAcquisition)).getData();
-      ZipEntry acquisitionSample = zipFile.getEntry("acquisition_sample.csv");
-      ACQUISITION_SAMPLE_LIST = new CsvDataset<>(new AcquisitionSample.Builder(), zipFile.getInputStream(acquisitionSample)).getData();
-      ZipEntry inputFood = zipFile.getEntry("input_food.csv");
-      INPUT_FOOD_LIST = new CsvDataset<>(new InputFood.Builder(), zipFile.getInputStream(inputFood)).getData();
-      ZipEntry foodAttribute = zipFile.getEntry("food_attribute.csv");
-      FOOD_ATTRIBUTE_LIST = new CsvDataset<>(new FoodAttribute.Builder(), zipFile.getInputStream(foodAttribute)).getData();
-      ZipEntry foodCalorieConversionFactor = zipFile.getEntry("food_calorie_conversion_factor.csv");
-      FOOD_CALORIE_CONVERSION_FACTOR_LIST = new CsvDataset<>(new FoodCalorieConversionFactor.Builder(), zipFile.getInputStream(foodCalorieConversionFactor)).getData();
-      ZipEntry foodProteinConversionFactor = zipFile.getEntry("food_protein_conversion_factor.csv");
-      FOOD_PROTEIN_CONVERSION_FACTOR_LIST = new CsvDataset<>(new FoodProteinConversionFactor.Builder(), zipFile.getInputStream(foodProteinConversionFactor)).getData();
-      ZipEntry foodNutrientConversionFactor = zipFile.getEntry("food_nutrient_conversion_factor.csv");
-      FOOD_NUTRIENT_CONVERSION_FACTOR_LIST = new CsvDataset<>(new FoodNutrientConversionFactor.Builder(), zipFile.getInputStream(foodNutrientConversionFactor)).getData();
+      if(wweiaFoodCategoryList == null) {
+        ZipEntry wweiaFoodCategory = zipFile.getEntry("wweia_food_category.csv");
+        wweiaFoodCategoryList = new CsvDataset<>(new WweiaFoodCategory.Builder(), zipFile.getInputStream(wweiaFoodCategory)).getData();
+      }
+      return Collections.unmodifiableList(wweiaFoodCategoryList);
     }
     catch(IOException e){
       throw new IllegalStateException(e);
     }
   }
 
-  private Datasets() {
-  }
-
-  public static List<WweiaFoodCategory> wweiaFoodCategories() {
-    return Collections.unmodifiableList(WWEIA_FOOD_CATEGORY_LIST);
-  }
-
   public static List<FoodCategory> foodCategories() {
-    return Collections.unmodifiableList(FOOD_CATEGORY_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(foodCategoryList == null) {
+        ZipEntry foodCategory = zipFile.getEntry("food_category.csv");
+        foodCategoryList = new CsvDataset<>(new FoodCategory.Builder(), zipFile.getInputStream(foodCategory)).getData();
+      }
+      return Collections.unmodifiableList(foodCategoryList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<RetentionFactor> retentionFactors() {
-    return Collections.unmodifiableList(RETENTION_FACTOR_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(retentionFactorList == null) {
+        ZipEntry retentionFactor = zipFile.getEntry("retention_factor.csv");
+        retentionFactorList = new CsvDataset<>(new RetentionFactor.Builder(), zipFile.getInputStream(retentionFactor)).getData();
+      }
+      return Collections.unmodifiableList(retentionFactorList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<FoodAttributeType> foodAttributeTypes() {
-    return Collections.unmodifiableList(FOOD_ATTRIBUTE_TYPE_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(foodAttributeTypeList == null) {
+        ZipEntry foodAttributeType = zipFile.getEntry("food_attribute_type.csv");
+        foodAttributeTypeList = new CsvDataset<>(new FoodAttributeType.Builder(), zipFile.getInputStream(foodAttributeType)).getData();
+      }
+      return Collections.unmodifiableList(foodAttributeTypeList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<Nutrient> nutrients() {
-    return Collections.unmodifiableList(NUTRIENT_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(nutrientList == null) {
+        ZipEntry nutrient = zipFile.getEntry("nutrient.csv");
+        nutrientList = new CsvDataset<>(new Nutrient.Builder(), zipFile.getInputStream(nutrient)).getData();
+      }
+      return Collections.unmodifiableList(nutrientList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<NutrientIncomingName> nutrientIncomingNames() {
-    return Collections.unmodifiableList(NUTRIENT_INCOMING_NAME_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(nutrientIncomingNameList == null) {
+        ZipEntry nutrientIncomingName = zipFile.getEntry("nutrient_incoming_name.csv");
+        nutrientIncomingNameList = new CsvDataset<>(new NutrientIncomingName.Builder(), zipFile.getInputStream(nutrientIncomingName)).getData();
+      }
+      return Collections.unmodifiableList(nutrientIncomingNameList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<MeasureUnit> measureUnits() {
-    return Collections.unmodifiableList(MEASURE_UNIT_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(measureUnitList == null) {
+        ZipEntry measureUnit = zipFile.getEntry("measure_unit.csv");
+        measureUnitList = new CsvDataset<>(new MeasureUnit.Builder(), zipFile.getInputStream(measureUnit)).getData();
+      }
+      return Collections.unmodifiableList(measureUnitList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<FoodNutrientSource> foodNutrientSources() {
-    return Collections.unmodifiableList(FOOD_NUTRIENT_SOURCE_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(foodNutrientSourceList == null) {
+        ZipEntry foodNutrientSource = zipFile.getEntry("food_nutrient_source.csv");
+        foodNutrientSourceList = new CsvDataset<>(new FoodNutrientSource.Builder(), zipFile.getInputStream(foodNutrientSource)).getData();
+      }
+      return Collections.unmodifiableList(foodNutrientSourceList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<FoodNutrientDerivation> foodNutrientDerivations() {
-    return Collections.unmodifiableList(FOOD_NUTRIENT_DERIVATION_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(foodNutrientDerivationList == null) {
+        ZipEntry foodNutrientDerivation = zipFile.getEntry("food_nutrient_derivation.csv");
+        foodNutrientDerivationList = new CsvDataset<>(new FoodNutrientDerivation.Builder(), zipFile.getInputStream(foodNutrientDerivation)).getData();
+      }
+      return Collections.unmodifiableList(foodNutrientDerivationList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<LabMethod> labMethods() {
-    return Collections.unmodifiableList(LAB_METHOD_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(labMethodList == null) {
+        ZipEntry labMethod = zipFile.getEntry("lab_method.csv");
+        labMethodList = new CsvDataset<>(new LabMethod.Builder(), zipFile.getInputStream(labMethod)).getData();
+      }
+      return Collections.unmodifiableList(labMethodList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<LabMethodCode> labMethodCodes() {
-    return Collections.unmodifiableList(LAB_METHOD_CODE_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(labMethodCodeList == null) {
+        ZipEntry labMethodCode = zipFile.getEntry("lab_method_code.csv");
+        labMethodCodeList = new CsvDataset<>(new LabMethodCode.Builder(), zipFile.getInputStream(labMethodCode)).getData();
+      }
+      return Collections.unmodifiableList(labMethodCodeList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<LabMethodNutrient> labMethodNutrients() {
-    return Collections.unmodifiableList(LAB_METHOD_NUTRIENT_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(labMethodNutrientList == null) {
+        ZipEntry labMethodNutrient = zipFile.getEntry("lab_method_nutrient.csv");
+        labMethodNutrientList = new CsvDataset<>(new LabMethodNutrient.Builder(), zipFile.getInputStream(labMethodNutrient)).getData();
+      }
+      return Collections.unmodifiableList(labMethodNutrientList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<Food> foods() {
-    return Collections.unmodifiableList(FOOD_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(foodList == null) {
+        ZipEntry food = zipFile.getEntry("food.csv");
+        foodList = new CsvDataset<>(new Food.Builder(), zipFile.getInputStream(food)).getData();
+      }
+      return Collections.unmodifiableList(foodList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<FoodNutrient> foodNutrients() {
-    return Collections.unmodifiableList(FOOD_NUTRIENT_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(foodNutrientList == null) {
+        ZipEntry foodNutrient = zipFile.getEntry("food_nutrient.csv");
+        foodNutrientList = new CsvDataset<>(new FoodNutrient.Builder(), zipFile.getInputStream(foodNutrient)).getData();
+      }
+      return Collections.unmodifiableList(foodNutrientList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<FoodPortion> foodPortions() {
-    return Collections.unmodifiableList(FOOD_PORTION_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(foodPortionList == null) {
+        ZipEntry foodPortion = zipFile.getEntry("food_portion.csv");
+        foodPortionList = new CsvDataset<>(new FoodPortion.Builder(), zipFile.getInputStream(foodPortion)).getData();
+      }
+      return Collections.unmodifiableList(foodPortionList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<FoodComponent> foodComponents() {
-    return Collections.unmodifiableList(FOOD_COMPONENT_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(foodComponentList == null) {
+        ZipEntry foodComponent = zipFile.getEntry("food_component.csv");
+        foodComponentList = new CsvDataset<>(new FoodComponent.Builder(), zipFile.getInputStream(foodComponent)).getData();
+      }
+      return Collections.unmodifiableList(foodComponentList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<AgriculturalAcquisition> agriculturalAcquisitions() {
-    return Collections.unmodifiableList(AGRICULTURAL_ACQUISITION_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(agriculturalAcquisitionList == null) {
+        ZipEntry agriculturalAcquisition = zipFile.getEntry("agricultural_acquisition.csv");
+        agriculturalAcquisitionList = new CsvDataset<>(new AgriculturalAcquisition.Builder(), zipFile.getInputStream(agriculturalAcquisition)).getData();
+      }
+      return Collections.unmodifiableList(agriculturalAcquisitionList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<SurveyFnddsFood> surveyFnddsFoods() {
-    return Collections.unmodifiableList(SURVEY_FNDDS_FOOD_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(surveyFnddsFoodList == null) {
+        ZipEntry surveyFnddsFood = zipFile.getEntry("survey_fndds_food.csv");
+        surveyFnddsFoodList = new CsvDataset<>(new SurveyFnddsFood.Builder(), zipFile.getInputStream(surveyFnddsFood)).getData();
+      }
+      return Collections.unmodifiableList(surveyFnddsFoodList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<BrandedFood> brandedFoods() {
-    return Collections.unmodifiableList(BRANDED_FOOD_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(brandedFoodList == null) {
+        ZipEntry brandedFood = zipFile.getEntry("branded_food.csv");
+        brandedFoodList = new CsvDataset<>(new BrandedFood.Builder(), zipFile.getInputStream(brandedFood)).getData();
+      }
+      return Collections.unmodifiableList(brandedFoodList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<FoodUpdateLogEntry> foodUpdateLogEntries() {
-    return Collections.unmodifiableList(FOOD_UPDATE_LOG_ENTRY_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(foodUpdateLogEntryList == null) {
+        ZipEntry foodUpdateLogEntry = zipFile.getEntry("food_update_log_entry.csv");
+        foodUpdateLogEntryList = new CsvDataset<>(new FoodUpdateLogEntry.Builder(), zipFile.getInputStream(foodUpdateLogEntry)).getData();
+      }
+      return Collections.unmodifiableList(foodUpdateLogEntryList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<SrLegacyFood> srLegacyFoods() {
-    return Collections.unmodifiableList(SR_LEGACY_FOOD_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(srLegacyFoodList == null) {
+        ZipEntry srLegacyFood = zipFile.getEntry("sr_legacy_food.csv");
+        srLegacyFoodList = new CsvDataset<>(new SrLegacyFood.Builder(), zipFile.getInputStream(srLegacyFood)).getData();
+      }
+      return Collections.unmodifiableList(srLegacyFoodList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<FoundationFood> foundationFoods() {
-    return Collections.unmodifiableList(FOUNDATION_FOOD_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(foundationFoodList == null) {
+        ZipEntry foundationFood = zipFile.getEntry("foundation_food.csv");
+        foundationFoodList = new CsvDataset<>(new FoundationFood.Builder(), zipFile.getInputStream(foundationFood)).getData();
+      }
+      return Collections.unmodifiableList(foundationFoodList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<SampleFood> sampleFoods() {
-    return Collections.unmodifiableList(SAMPLE_FOOD_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(sampleFoodList == null) {
+        ZipEntry sampleFood = zipFile.getEntry("sample_food.csv");
+        sampleFoodList = new CsvDataset<>(new SampleFood.Builder(), zipFile.getInputStream(sampleFood)).getData();
+      }
+      return Collections.unmodifiableList(sampleFoodList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<SubSampleFood> subSampleFoods() {
-    return Collections.unmodifiableList(SUB_SAMPLE_FOOD_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(subSampleFoodList == null) {
+        ZipEntry subSampleFood = zipFile.getEntry("sub_sample_food.csv");
+        subSampleFoodList = new CsvDataset<>(new SubSampleFood.Builder(), zipFile.getInputStream(subSampleFood)).getData();
+      }
+      return Collections.unmodifiableList(subSampleFoodList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<SubSampleResult> subSampleResults() {
-    return Collections.unmodifiableList(SUB_SAMPLE_RESULT_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(subSampleResultList == null) {
+        ZipEntry subSampleResult = zipFile.getEntry("sub_sample_result.csv");
+        subSampleResultList = new CsvDataset<>(new SubSampleResult.Builder(), zipFile.getInputStream(subSampleResult)).getData();
+      }
+      return Collections.unmodifiableList(subSampleResultList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<MarketAcquisition> marketAcquisitions() {
-    return Collections.unmodifiableList(MARKET_ACQUISITION_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(marketAcquisitionList == null) {
+        ZipEntry marketAcquisition = zipFile.getEntry("market_acquisition.csv");
+        marketAcquisitionList = new CsvDataset<>(new MarketAcquisition.Builder(), zipFile.getInputStream(marketAcquisition)).getData();
+      }
+      return Collections.unmodifiableList(marketAcquisitionList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<AcquisitionSample> acquisitionSamples() {
-    return Collections.unmodifiableList(ACQUISITION_SAMPLE_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(acquisitionSampleList == null) {
+        ZipEntry acquisitionSample = zipFile.getEntry("acquisition_sample.csv");
+        acquisitionSampleList = new CsvDataset<>(new AcquisitionSample.Builder(), zipFile.getInputStream(acquisitionSample)).getData();
+      }
+      return Collections.unmodifiableList(acquisitionSampleList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<InputFood> inputFoods() {
-    return Collections.unmodifiableList(INPUT_FOOD_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(inputFoodList == null) {
+        ZipEntry inputFood = zipFile.getEntry("input_food.csv");
+        inputFoodList = new CsvDataset<>(new InputFood.Builder(), zipFile.getInputStream(inputFood)).getData();
+      }
+      return Collections.unmodifiableList(inputFoodList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<FoodAttribute> foodAttributes() {
-    return Collections.unmodifiableList(FOOD_ATTRIBUTE_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(foodAttributeList == null) {
+        ZipEntry foodAttribute = zipFile.getEntry("food_attribute.csv");
+        foodAttributeList = new CsvDataset<>(new FoodAttribute.Builder(), zipFile.getInputStream(foodAttribute)).getData();
+      }
+      return Collections.unmodifiableList(foodAttributeList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<FoodCalorieConversionFactor> foodCalorieConversionFactors() {
-    return Collections.unmodifiableList(FOOD_CALORIE_CONVERSION_FACTOR_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(foodCalorieConversionFactorList == null) {
+        ZipEntry foodCalorieConversionFactor = zipFile.getEntry("food_calorie_conversion_factor.csv");
+        foodCalorieConversionFactorList = new CsvDataset<>(new FoodCalorieConversionFactor.Builder(), zipFile.getInputStream(foodCalorieConversionFactor)).getData();
+      }
+      return Collections.unmodifiableList(foodCalorieConversionFactorList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<FoodProteinConversionFactor> foodProteinConversionFactors() {
-    return Collections.unmodifiableList(FOOD_PROTEIN_CONVERSION_FACTOR_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(foodProteinConversionFactorList == null) {
+        ZipEntry foodProteinConversionFactor = zipFile.getEntry("food_protein_conversion_factor.csv");
+        foodProteinConversionFactorList = new CsvDataset<>(new FoodProteinConversionFactor.Builder(), zipFile.getInputStream(foodProteinConversionFactor)).getData();
+      }
+      return Collections.unmodifiableList(foodProteinConversionFactorList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 
   public static List<FoodNutrientConversionFactor> foodNutrientConversionFactors() {
-    return Collections.unmodifiableList(FOOD_NUTRIENT_CONVERSION_FACTOR_LIST);
+    try (ZipFile zipFile = ZipLoader.load())
+    {
+      if(foodNutrientConversionFactorList == null) {
+        ZipEntry foodNutrientConversionFactor = zipFile.getEntry("food_nutrient_conversion_factor.csv");
+        foodNutrientConversionFactorList = new CsvDataset<>(new FoodNutrientConversionFactor.Builder(), zipFile.getInputStream(foodNutrientConversionFactor)).getData();
+      }
+      return Collections.unmodifiableList(foodNutrientConversionFactorList);
+    }
+    catch(IOException e){
+      throw new IllegalStateException(e);
+    }
   }
 }

@@ -23,7 +23,6 @@ import com.squareup.javapoet.TypeSpec;
 public class DatasetsGenerator
 {
     private TypeSpec.Builder datasetsType;
-    private CodeBlock.Builder initializer;
 
     public DatasetsGenerator()
     {
@@ -34,26 +33,10 @@ public class DatasetsGenerator
         this.datasetsType = TypeSpec.classBuilder("Datasets")
                                     .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
                                     .addMethod(constructor);
-
-        this.initializer = CodeBlock.builder()
-                                    .add("try ($T zipFile = $T.load())\n", ZipFile.class, ZipLoader.class)
-                                    .add("{\n")
-                                    .indent();
     }
 
     public void saveToDisk() throws IOException
     {
-        this.initializer.unindent()
-                        .add("}\n")
-                        .add("catch($T e)", IOException.class)
-                        .add("{\n")
-                        .indent()
-                        .addStatement("throw new $T(e)", IllegalStateException.class)
-                        .unindent()
-                        .add("}\n");
-
-        this.datasetsType.addStaticBlock(this.initializer.build());
-
         String generatedPackage = Constants.generated(Constants.PACKAGE);
         JavaFile.builder(generatedPackage, datasetsType.build())
                 .build()
@@ -68,20 +51,37 @@ public class DatasetsGenerator
         TypeName typeArgument = ClassName.get(Constants.generated(Constants.PACKAGE), dataObject.name);
         ParameterizedTypeName typeName = ParameterizedTypeName.get(rawType, typeArgument);
 
-        String fieldName = CaseFormat.UPPER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, dataObject.name) + "_LIST";
+        String fieldName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, dataObject.name) + "List";
 
-        FieldSpec constant = FieldSpec.builder(typeName, fieldName, Modifier.STATIC, Modifier.PRIVATE, Modifier.FINAL)
+        FieldSpec constant = FieldSpec.builder(typeName, fieldName, Modifier.STATIC, Modifier.PRIVATE)
                                       .build();
 
         this.datasetsType.addField(constant);
 
-        // load data
-        String zipEntryName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, dataObject.name);
-        this.initializer.addStatement("$T $L = zipFile.getEntry(\"$L\")", ZipEntry.class, zipEntryName, nameOfFileInZip)
-                        .addStatement("$L = new $T<>(new $T.Builder(), zipFile.getInputStream($L)).getData()",
-                                fieldName, CsvDataset.class, typeArgument, zipEntryName);
-
         // static getter method
+        String zipEntryName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, dataObject.name);
+
+        CodeBlock.Builder codeBuilder = CodeBlock.builder();
+        codeBuilder.add("try ($T zipFile = $T.load())\n", ZipFile.class, ZipLoader.class)
+                   .add("{\n")
+                   .indent()
+                   .add("if($L == null) {\n", fieldName)
+                   .indent()
+                   .addStatement("$T $L = zipFile.getEntry(\"$L\")", ZipEntry.class, zipEntryName, nameOfFileInZip)
+                   .addStatement("$L = new $T<>(new $T.Builder(), zipFile.getInputStream($L)).getData()", fieldName,
+                           CsvDataset.class, typeArgument, zipEntryName)
+                   .unindent()
+                   .add("}\n")
+                   .addStatement("return $T.unmodifiableList($L)", Collections.class, fieldName)
+                   .unindent()
+                   .add("}\n")
+                   .add("catch($T e)", IOException.class)
+                   .add("{\n")
+                   .indent()
+                   .addStatement("throw new $T(e)", IllegalStateException.class)
+                   .unindent()
+                   .add("}\n");
+
         String staticMethodName = zipEntryName.endsWith("y")
                 ? zipEntryName.substring(0, zipEntryName.length() - 1) + "ies"
                 : zipEntryName + "s";
@@ -89,8 +89,7 @@ public class DatasetsGenerator
         this.datasetsType.addMethod(MethodSpec.methodBuilder(staticMethodName)
                                               .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                                               .returns(typeName)
-                                              .addStatement("return $T.unmodifiableList($L)", Collections.class,
-                                                      fieldName)
+                                              .addCode(codeBuilder.build())
                                               .build());
     }
 }

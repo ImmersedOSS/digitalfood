@@ -1,22 +1,20 @@
 package org.immersed.fooddatacentral;
 
-import java.io.IOException;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-
-import org.immersed.fooddatacentral.generated.Food;
+import org.immersed.fooddatacentral.generated.Datasets;
 
 public class CsvLoadingApplication
 {
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args)
     {
-        try (ZipFile file = ZipLoader.load())
-        {
-            ZipEntry entry = file.getEntry("food.csv");
-            CsvDataset<Food.Builder, Food> dataset = new CsvDataset<>(new Food.Builder(), file.getInputStream(entry));
-
-            System.out.println(dataset.getData()
-                                      .size());
-        }
+        Datasets.foods()
+                .stream()
+                .filter(f -> f.description()
+                              .toLowerCase()
+                              .contains("cucumber"))
+                .sorted((f1, f2) -> f1.description()
+                                      .toLowerCase()
+                                      .compareTo(f2.description()
+                                                   .toLowerCase()))
+                .forEach(System.out::println);
     }
 }
