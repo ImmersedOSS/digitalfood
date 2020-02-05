@@ -157,6 +157,16 @@ public class DataObjectGeneratorRowProcessor implements RowProcessor
         this.dataObjectType.addType(builderType.build());
     }
 
+    public TypeSpec getBuilderType()
+    {
+        return builderType.build();
+    }
+
+    public TypeSpec getDataObjectType()
+    {
+        return dataObjectType.build();
+    }
+
     public void saveToDisk() throws IOException
     {
         String generatedPackage = Constants.generated(Constants.PACKAGE);

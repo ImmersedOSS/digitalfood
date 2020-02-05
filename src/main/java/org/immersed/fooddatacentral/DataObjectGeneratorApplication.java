@@ -39,14 +39,18 @@ public class DataObjectGeneratorApplication
 
         try (ZipFile file = ZipLoader.load())
         {
+            DatasetsGenerator generator = new DatasetsGenerator();
+
             for (ZipEntry entry : Collections.list(file.entries()))
             {
-                readFile(file, entry);
+                readFile(file, entry, generator);
             }
+
+            generator.saveToDisk();
         }
     }
 
-    private static final void readFile(ZipFile file, ZipEntry entry) throws IOException
+    private static final void readFile(ZipFile file, ZipEntry entry, DatasetsGenerator generator) throws IOException
     {
         String nameOfFileInZip = entry.getName();
 
@@ -60,6 +64,8 @@ public class DataObjectGeneratorApplication
             System.out.println(nameOfFileInZip);
             CsvParser parser = new CsvParser(settings);
             parser.parse(file.getInputStream(entry));
+
+            generator.add(nameOfFileInZip, processor);
 
             processor.saveToDisk();
         }
