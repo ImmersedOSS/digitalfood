@@ -12,7 +12,7 @@ public class CsvLoadingApplication
                 .stream()
                 .filter(f -> f.description()
                               .toLowerCase()
-                              .contains("cucumber"))
+                              .contains("carrot"))
                 .sorted((f1, f2) -> f1.description()
                                       .toLowerCase()
                                       .compareTo(f2.description()
@@ -23,7 +23,7 @@ public class CsvLoadingApplication
 
         Datasets.foodNutrients()
                 .stream()
-                .filter(f -> f.fdcId() == 168409)
+                .filter(f -> f.fdcId() == 384812)
                 .forEach(CsvLoadingApplication::printNutrients);
     }
 
@@ -35,7 +35,8 @@ public class CsvLoadingApplication
                                     .findFirst()
                                     .orElseThrow(() -> new IllegalStateException("Unknown nutrient: " + foodNutrient));
 
-        String line = String.format("  %s: %.2f", nutrient.name(), foodNutrient.amount());
+        String line = String.format("  %s: %.2f %s", nutrient.name(), foodNutrient.amount(), nutrient.unitName()
+                                                                                                    .toLowerCase());
         System.out.println(line);
     }
 }

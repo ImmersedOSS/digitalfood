@@ -1,13 +1,12 @@
 package org.immersed.fooddatacentral;
 
-import static org.immersed.Constants.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.stream.Stream;
+import java.util.zip.ZipFile;
 
-import java.io.*;
-import java.nio.file.*;
-import java.util.stream.*;
-import java.util.zip.*;
-
-import org.immersed.*;
+import org.immersed.Constants;
 
 public final class ZipLoader
 {
