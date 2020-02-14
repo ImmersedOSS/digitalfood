@@ -1,4 +1,4 @@
-package org.immersed.fooddatacentral;
+package org.immersed.fooddatacentral.apps;
 
 import org.immersed.fooddatacentral.generated.Datasets;
 import org.immersed.fooddatacentral.generated.FoodNutrient;
